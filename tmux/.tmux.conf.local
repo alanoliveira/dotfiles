@@ -364,6 +364,10 @@ bind C-w command-prompt -p find-window 'select-window -t %%'
 # allow select inner stuffs with i<x> in copy-mode-vi
 bind -T copy-mode-vi i command-prompt -k -p "inner selection" "run 'cut -c3- ~/.tmux.conf.local | bash -s _vi_select_inner %%'"
 
+# fpp
+unbind F
+bind F run-shell "$DOTFILES/tmux/plugins/fpp.tmux tmux_fpp_run"
+
 # -- tpm -----------------------------------------------------------------------
 
 # while I don't use tpm myself, many people requested official support so here
@@ -404,7 +408,6 @@ tmux_conf_uninstall_plugins_on_reload=true
 #set -g @plugin 'tmux-plugins/tmux-resurrect'
 #set -g @plugin 'tmux-plugins/tmux-continuum'
 #set -g @continuum-restore 'on'
-
 
 # -- custom variables ----------------------------------------------------------
 
