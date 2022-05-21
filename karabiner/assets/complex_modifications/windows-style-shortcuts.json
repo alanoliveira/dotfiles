@@ -1,0 +1,59 @@
+{
+    "rules": [
+        {
+            "description": "PC-Style Command+Tab",
+            "manipulators": [
+                {
+                    "from": {
+                        "key_code": "tab",
+                        "modifiers": {
+                            "mandatory": [
+                                "option"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "tab",
+                            "modifiers": [
+                                "command"
+                            ]
+                        }
+                    ],
+                    "type": "basic"
+                }
+            ]
+        },
+        {
+            "description": "PC-Style Command+tilde",
+            "manipulators": [
+                {
+                    "from": {
+                        "key_code": "grave_accent_and_tilde",
+                        "modifiers": {
+                            "mandatory": [
+                                "option"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "grave_accent_and_tilde",
+                            "modifiers": [
+                                "command"
+                            ]
+                        }
+                    ],
+                    "type": "basic"
+                }
+            ]
+        }
+    ],
+    "title": "Windows Style Shortcuts"
+}
