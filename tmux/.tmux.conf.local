@@ -20,7 +20,7 @@
 # new window retains current path, possible values are:
 #   - true
 #   - false (default)
-tmux_conf_new_window_retain_current_path=false
+tmux_conf_new_window_retain_current_path=true
 
 # new pane retains current path, possible values are:
 #   - true (default)
@@ -226,8 +226,8 @@ tmux_conf_theme_right_separator_sub="|"
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left=" ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} "
-tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized}#{?battery_status,#{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} "
+tmux_conf_theme_status_left=" ❐ #S  "
+tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized} , %R , %b月%d日 | #{username}#{root} | #{hostname} "
 
 # status left style
 tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_6,$tmux_conf_theme_colour_7,$tmux_conf_theme_colour_8"
@@ -320,11 +320,14 @@ tmux_conf_theme_clock_style="24"
 #   - false (default)
 # on macOS, this requires installing reattach-to-user-namespace, see README.md
 # on Linux, this requires xsel or xclip
-tmux_conf_copy_to_os_clipboard=false
+tmux_conf_copy_to_os_clipboard=true
 
 
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
+
+# default-terminal "tmux-256color" causes some problem on linux peco
+if-shell "uname | grep -q Linux" "set -u default-terminal"
 
 # increase history size
 #set -g history-limit 10000
@@ -337,16 +340,29 @@ tmux_conf_copy_to_os_clipboard=false
 #set -g status-keys vi
 #set -g mode-keys vi
 
+# copy-mode-vi binds
+
+# Copycat select file functionality
+# bind C-f copy-mode \; send -X search-backward "(^|^\.|[[:space:]]|[[:space:]]\.|[[:space:]]\.\.|^\.\.)[[:alnum:]~_-]*/[][[:alnum:]_.#$%&+=/@-]*"
+
+# Copycat select url functionality
+bind C-u copy-mode \; send -X search-backward "(https?://|git@|git://|ssh://|ftp://|file:///)[[:alnum:]?=%/_.:,;~@!#$&()*+-]*"
+
 # replace C-b by C-a instead of using both prefixes
-# set -gu prefix2
-# unbind C-a
-# unbind C-b
-# set -g prefix C-a
-# bind C-a send-prefix
+set -gu prefix2
+unbind C-a
+unbind C-b
+set -g prefix C-a
+bind C-a send-prefix
 
 # move status line to top
 #set -g status-position top
 
+# select window by title
+bind C-w command-prompt -p find-window 'select-window -t %%'
+
+# allow select inner stuffs with i<x> in copy-mode-vi
+bind -T copy-mode-vi i command-prompt -k -p "inner selection" "run 'cut -c3- ~/.tmux.conf.local | bash -s _vi_select_inner %%'"
 
 # -- tpm -----------------------------------------------------------------------
 
@@ -412,6 +428,12 @@ tmux_conf_uninstall_plugins_on_reload=true
 #
 # online() {
 #   ping -c 1 1.1.1.1 >/dev/null 2>&1 && printf '✔' || printf '✘'
+# }
+#
+# _vi_select_inner() {
+#   case $1 in
+#      w) tmux send -X select-word ;;
+#   esac
 # }
 #
 # "$@"
