@@ -1,0 +1,15 @@
+#!/bin/bash
+HOOKS_DIR=$(dirname "$0")
+D_DIR="$1.d"
+
+FILES=$(find $HOOKS_DIR/$D_DIR/* -type f 2> /dev/null)
+for f in $FILES
+do
+	$f
+	ret=$?
+	if [ $ret -ne 0 ]; then
+		echo "Script $f returned $ret"
+		echo "Aborting"
+		exit -1
+	fi
+done

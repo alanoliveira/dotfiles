@@ -1,0 +1,5 @@
+*~
+.DS_Store
+solargraph_definitions.rb
+Gemfile.local*
+.envrc

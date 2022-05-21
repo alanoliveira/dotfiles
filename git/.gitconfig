@@ -1,0 +1,22 @@
+[include]
+    path = .gitconfig.user
+
+[pull]
+	rebase = false
+
+[alias]
+  st = status
+  co = checkout
+  di = diff
+
+[core]
+	excludesfile = ~/dotfiles/git/.gitignore_global
+	editor = nvim
+	autocrlf = input
+
+[init]
+	defaultBranch = master
+	templatedir = ~/dotfiles/git/.git-templates
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
