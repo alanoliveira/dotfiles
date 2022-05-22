@@ -358,15 +358,12 @@ bind C-a send-prefix
 # move status line to top
 #set -g status-position top
 
-# select window by title
-bind C-w command-prompt -p find-window 'select-window -t %%'
-
 # allow select inner stuffs with i<x> in copy-mode-vi
-bind -T copy-mode-vi i command-prompt -k -p "inner selection" "run 'cut -c3- ~/.tmux.conf.local | bash -s _vi_select_inner %%'"
+bind -T copy-mode-vi i command-prompt -1 -p "inner selection" "run 'cut -c3- ~/.tmux.conf.local | bash -s _vi_select_inner %%'"
 
 # fpp
-unbind F
-bind F run-shell "$DOTFILES/tmux/plugins/fpp.tmux tmux_fpp_run"
+# unbind F
+# bind F run-shell "$DOTFILES/tmux/plugins/fpp.tmux tmux_fpp_run"
 
 # -- tpm -----------------------------------------------------------------------
 

@@ -12,6 +12,7 @@ function fish_user_key_bindings
       bind -M $mode \cxr    reload_shell
       bind -M $mode \cp     up-or-search
       bind -M $mode \cn     down-or-search
+      bind -M $mode \ce     tmux_fpp
       bind -M $mode ! bind_bang
       bind -M $mode '$' bind_dollar
     end
