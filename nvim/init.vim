@@ -57,6 +57,7 @@ call plug#begin()
     Plug 'lukas-reineke/indent-blankline.nvim'
 
     Plug 'nvim-treesitter/nvim-treesitter', { 'run': ':TSUpdate' }
+    Plug 'p00f/nvim-ts-rainbow'
     Plug 'JoosepAlviste/nvim-ts-context-commentstring'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
