@@ -21,7 +21,6 @@ omf:
 
 zsh:
 	@ln -nfs "$(ROOT_DIR)/zsh/.zshrc" "$(HOME)/"
-	@ln -fs "$(ROOT_DIR)/zsh/.zshrc.d" "$(HOME)/"
 
 git:
 	@ln -nfs "$(ROOT_DIR)/git/.git-templates" "$(HOME)/"
