@@ -13,9 +13,9 @@ nnoremap <silent> <C-l> <C-w>l
 
 nnoremap <silent><expr> <Leader>hs (&hls && v:hlsearch ? ':nohls' : ':set hls').'<CR>'
 
-nnoremap <silent> J 5j
-nnoremap <silent> K 5k
-nnoremap <silent> <leader>J :j<CR>
+" nnoremap <silent> J 5j
+" nnoremap <silent> K 5k
+" nnoremap <silent> <leader>J :j<CR>
 
 nnoremap <silent> <A-l> :BufferLineCycleNext<CR>
 nnoremap <silent> <A-h> :BufferLineCyclePrev<CR>

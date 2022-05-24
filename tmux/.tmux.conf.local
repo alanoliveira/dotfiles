@@ -326,9 +326,6 @@ tmux_conf_copy_to_os_clipboard=true
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
 
-# default-terminal "tmux-256color" causes some problem on linux peco
-if-shell "uname | grep -q Linux" "set -u default-terminal"
-
 # increase history size
 #set -g history-limit 10000
 
