@@ -19,4 +19,4 @@ nnoremap <silent><expr> <Leader>hs (&hls && v:hlsearch ? ':nohls' : ':set hls').
 
 nnoremap <silent> <A-l> :BufferLineCycleNext<CR>
 nnoremap <silent> <A-h> :BufferLineCyclePrev<CR>
-nnoremap <C-w> :Bdelete<CR>
+nnoremap <leader>q :Bdelete<CR>
