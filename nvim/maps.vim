@@ -11,7 +11,7 @@ nnoremap <silent> <C-k> <C-w>k
 nnoremap <silent> <C-h> <C-w>h
 nnoremap <silent> <C-l> <C-w>l
 
-nnoremap <silent><expr> <Leader>hs (&hls && v:hlsearch ? ':nohls' : ':set hls').'<CR>'
+nnoremap <silent><expr> <Leader>/ (&hls && v:hlsearch ? ':nohls' : ':set hls').'<CR>'
 
 " nnoremap <silent> J 5j
 " nnoremap <silent> K 5k
