@@ -39,7 +39,7 @@ end
 local function lsp_commands(bufnr)
     vim.cmd [[ 
         command! Format execute 'lua vim.lsp.buf.formatting()' 
-        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+        autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
     ]]
 end
 

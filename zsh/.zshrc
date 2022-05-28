@@ -8,6 +8,7 @@ case "$OSTYPE" in
       alias tac='tail -r'
   ;;
   linux*)
+      alias fd=fdfind
   ;;
 esac
 

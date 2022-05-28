@@ -363,8 +363,11 @@ bind -T copy-mode-vi i command-prompt -1 -p "inner selection" "run 'cut -c3- ~/.
 # bind F run-shell "$DOTFILES/tmux/plugins/fpp.tmux tmux_fpp_run"
 
 # Set pane title as directory if is running shell, otherwise show the current program
-set-option -g automatic-rename-format "#{?#{==:#{pane_current_command},#{b:SHELL}},#{b:pane_current_path},>#{pane_current_command}}"
+set-option -g automatic-rename-format "#{?#{==:#{pane_current_command},#{b:SHELL}}, #{b:pane_current_path},#{pane_current_command}}"
 set-option -g status-interval 5
+
+# Automatically creates a session to edit dotfiles
+set-option -s command-alias[100] dotf="run-shell '$DOTFILES/tmux/plugins/util.tmux tmux_util_create_dotfiles_session'"
 
 # -- tpm -----------------------------------------------------------------------
 

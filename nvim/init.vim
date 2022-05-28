@@ -18,12 +18,13 @@ set smartcase
 set gdefault
 set updatetime=300
 set foldmethod=syntax nofoldenable
-set tabstop=4 softtabstop=4 shiftwidth=4
+set tabstop=2 softtabstop=2 shiftwidth=2
 set expandtab
 set completeopt=menuone,noselect
 set nowrap
 set list
 set path+=**
+set mouse=a
 
 call plug#begin()
     Plug 'tpope/vim-sensible' " set some default options
@@ -62,8 +63,6 @@ call plug#begin()
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'sharkdp/fd'
-    Plug 'ahmedkhalf/project.nvim'
-    Plug 'goolord/alpha-nvim'
 
     "LSP
     Plug 'neovim/nvim-lspconfig'

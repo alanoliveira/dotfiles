@@ -4,6 +4,8 @@ autocmd FileType qf,help,man,lspinfo,*doc nnoremap <silent> <buffer> q :close<CR
 let g:camelcasemotion_key = ','
 let g:mapleader = "\<space>"
 
+" mouse
+:vnoremap <RightMouse> y
 
 " window navigation
 nnoremap <silent> <C-j> <C-w>j
@@ -19,4 +21,6 @@ nnoremap <silent><expr> <Leader>/ (&hls && v:hlsearch ? ':nohls' : ':set hls').'
 
 nnoremap <silent> <A-l> :BufferLineCycleNext<CR>
 nnoremap <silent> <A-h> :BufferLineCyclePrev<CR>
+nnoremap <silent> <A-L> :BufferLineMoveNext<CR>
+nnoremap <silent> <A-H> :BufferLineMovePrev<CR>
 nnoremap <leader>q :Bdelete<CR>

@@ -5,10 +5,11 @@
 - asdf: https://asdf-vm.com/
 - nvim: https://neovim.io/
 - tmux: https://github.com/tmux/tmux/wiki
-- peco: https://github.com/peco/peco
 - fpp: https://github.com/facebook/PathPicker
 - fzf: https://github.com/junegunn/fzf
 - exa: https://the.exa.website/
+- fd: https://github.com/sharkdp/fd
+- ripgrep: https://github.com/BurntSushi/ripgrep
 - font: https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/DroidSansMono
 
 ## Setup

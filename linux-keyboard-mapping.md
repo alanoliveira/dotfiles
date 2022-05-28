@@ -1,16 +1,19 @@
 # Linux Keyboard Mappings
 
+- Clone and build [caps2esc](https://github.com/alanoliveira/caps2esc)
 ```bash
 git clone https://github.com/alanoliveira/caps2esc ~/caps2esc
 cd ~/caps2esc
 gcc caps2esc.c -o caps2esc -I/usr/include/libevdev-1.0 -levdev -ludev
+```
 
-sudo cat << EOF > /etc/init.d/caps2esc
+- Create init.d file in `/etc/init.d/caps2esc` with the following content:
+  - replace `$(pwd)/caps2esc` path if necessary
+```bash
 #! /bin/sh
-# /etc/init.d/caps2esc
 
 # The following part always gets executed.
-echo "This part always gets executed"
+# echo "This part always gets executed"
 
 # The following part carries out specific functions depending on arguments.
 case "$1" in
@@ -31,10 +34,15 @@ case "$1" in
 esac
 
 exit 0
-EOF
-
-sudo chmod 755 /etc/init.d/caps2esc
-sudo update-rc.d caps2esc defaults
-# sudo update-rc.d -f caps2esc remove # to remove
 ```
 
+- Add it as a service
+```
+sudo chmod 755 /etc/init.d/caps2esc
+sudo update-rc.d caps2esc defaults
+```
+
+- To remove the service
+```
+sudo update-rc.d -f caps2esc remove # to remove
+```
