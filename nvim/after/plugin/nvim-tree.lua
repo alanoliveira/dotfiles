@@ -6,6 +6,7 @@ end
 vim.respect_buf_cwd = 1
 
 vim.api.nvim_set_keymap('n', '<C-b>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<C-b>', '<Esc>:NvimTreeToggle<CR>', { noremap = true, silent = true })
 
 local mapping_list = {
   { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },

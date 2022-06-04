@@ -45,7 +45,7 @@ call plug#begin()
     Plug 'tpope/vim-rails'
     Plug 'tpope/vim-bundler'
     Plug 'thoughtbot/vim-rspec'
-    Plug 'fatih/vim-go'
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'ziglang/zig.vim'
     Plug 'slim-template/vim-slim'
 

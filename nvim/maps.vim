@@ -1,6 +1,3 @@
-" q quit help files
-autocmd FileType qf,help,man,lspinfo,*doc nnoremap <silent> <buffer> q :close<CR> 
-
 let g:camelcasemotion_key = ','
 let g:mapleader = "\<space>"
 
@@ -24,3 +21,7 @@ nnoremap <silent> <A-h> :BufferLineCyclePrev<CR>
 nnoremap <silent> <A-L> :BufferLineMoveNext<CR>
 nnoremap <silent> <A-H> :BufferLineMovePrev<CR>
 nnoremap <leader>q :Bdelete<CR>
+
+" q quit help files
+autocmd FileType qf,help,man,lspinfo,*doc nnoremap <silent> <buffer> q :close<CR> 
+autocmd FileType qf,help,man,lspinfo,*doc nnoremap <silent> <buffer> <leader>q :close<CR> 
