@@ -9,7 +9,7 @@ __fzfcmd() {
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --reverse"
 
 function fzf-select-history-widget() {
-  local RET=$(history -n 1 | tac | FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --no-sort" $(__fzfcmd))
+  local RET=$(history -n 1 | uniq | FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --tac --tiebreak=index --query '$BUFFER'" $(__fzfcmd))
 
   if [ ! -z "$RET" ]; then
     BUFFER=$RET
