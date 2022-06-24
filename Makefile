@@ -11,6 +11,8 @@ tmux:
 
 shell-dependencies:
 	@ln -fs $(ROOT_DIR)/bash/.inputrc ~/.inputrc # rails console uses it
+	@ln -fs $(ROOT_DIR)/bash/.irbrc ~/.irbrc
+	@ln -fs $(ROOT_DIR)/bash/.pryrc ~/.pryrc
 	@ln -fs $(ROOT_DIR)/asdf/.asdfrc ~/.asdfrc
 
 zsh: shell-dependencies
