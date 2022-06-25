@@ -9,11 +9,19 @@ __fzfcmd() {
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --reverse"
 
 function fzf-select-history-widget() {
-  local RET=$(history -n 1 | uniq | FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --tac --tiebreak=index --query '$BUFFER'" $(__fzfcmd))
+  # the extra parentheses is necessary to remove trailing blank spaces
+  local RET=( $(\
+    fc -rl 1 |\
+    perl -ne 'print if !$seen{(/^\s*[0-9]+\**\s+(.*)/, $1)}++' |\
+    FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --tiebreak=index -n2..,.. --query=${(qqq)LBUFFER} +m"\
+    $(__fzfcmd)\
+  ) )
 
-  if [ ! -z "$RET" ]; then
-    BUFFER=$RET
-    CURSOR=$#RET # move cursor
+  if [ -n "$RET" ]; then
+    local NUM=$RET[1]
+    if [ -n "$NUM" ]; then
+      zle vi-fetch-history -n $NUM
+    fi
   fi
   zle reset-prompt
 }
