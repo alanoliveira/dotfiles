@@ -21,6 +21,8 @@ for file in $DOTFILES/zsh/zshrc.d/**/*(.); do
     source "$file"
 done
 
+unsetopt share_history
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f $DOTFILES/zsh/.p10k.zsh ]] || source $DOTFILES/zsh/.p10k.zsh
 source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
