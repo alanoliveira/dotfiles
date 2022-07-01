@@ -64,6 +64,7 @@ call plug#begin()
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'sharkdp/fd'
+    Plug 'mhartington/formatter.nvim'
 
     "LSP
     Plug 'neovim/nvim-lspconfig'

@@ -26,13 +26,6 @@ for _, sign in ipairs(signs) do
   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 end
 
-local function lsp_commands()
-  vim.cmd [[ 
-        command! Format execute 'lua vim.lsp.buf.formatting()' 
-        autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
-    ]]
-end
-
 local on_attach = function(client, bufnr)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
@@ -41,7 +34,6 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', '<leader>l', vim.diagnostic.setloclist, bufopts)
 
-  lsp_commands()
 end
 
 lspcfg.solargraph.setup {
