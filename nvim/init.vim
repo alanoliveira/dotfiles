@@ -25,6 +25,7 @@ set nowrap
 set list
 set path+=**
 set mouse=a
+set formatoptions-=cro
 
 call plug#begin()
     Plug 'tpope/vim-sensible' " set some default options
