@@ -11,5 +11,7 @@ formatter.setup {
   -- All formatter configurations are opt-in
   filetype = {
     javascript = { require("formatter.filetypes.javascript").prettier },
+    css = { require("formatter.filetypes.javascript").prettier },
+    scss = { require("formatter.filetypes.javascript").prettier },
   }
 }

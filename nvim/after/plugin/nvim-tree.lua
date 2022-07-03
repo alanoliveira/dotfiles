@@ -3,8 +3,6 @@ if not status_ok then
   return
 end
 
-vim.respect_buf_cwd = 1
-
 vim.api.nvim_set_keymap('n', '<C-b>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<C-b>', '<Esc>:NvimTreeToggle<CR>', { noremap = true, silent = true })
 
@@ -58,7 +56,7 @@ nvimtree.setup {
   },
   update_focused_file = {
     enable = true,
-    update_cwd = true,
+    update_cwd = false,
     ignore_list = {},
   },
   diagnostics = {
