@@ -64,12 +64,12 @@ call plug#begin()
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'sharkdp/fd'
-    Plug 'mhartington/formatter.nvim'
 
     "LSP
     Plug 'neovim/nvim-lspconfig'
     Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
     Plug 'williamboman/nvim-lsp-installer'
+    Plug 'lukas-reineke/lsp-format.nvim'
 
     "Code completion
     Plug 'hrsh7th/cmp-nvim-lsp'

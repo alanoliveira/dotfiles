@@ -3,9 +3,10 @@ if not status_ok then
   return
 end
 
-require("nvim-lsp-installer").setup {}
+require("nvim-lsp-installer").setup({ ensure_installed = { "sumneko_lua", "efm" } })
 require('toggle_lsp_diagnostics').init({ virtual_text = false })
 require "lsp_signature".setup({ floating_window = false, hint_prefix = "" })
+require("lsp-format").setup {}
 
 local signs = {
   { name = "DiagnosticSignError", text = "" },
@@ -27,13 +28,13 @@ for _, sign in ipairs(signs) do
 end
 
 local on_attach = function(client, bufnr)
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
+  require "lsp-format".on_attach(client)
 
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', '<leader>l', vim.diagnostic.setloclist, bufopts)
-
 end
 
 lspcfg.solargraph.setup {
@@ -44,6 +45,24 @@ lspcfg.zls.setup {
 }
 lspcfg.gopls.setup {
   on_attach = on_attach
+}
+
+local prettier = {
+  formatCommand = [[prettier --stdin-filepath ${INPUT} ${--tab-width:vim.o.tabstop}]],
+  formatStdin = true,
+}
+
+lspcfg.efm.setup {
+  on_attach = on_attach,
+  init_options = { documentFormatting = true },
+  settings = {
+    languages = {
+      javascript = { prettier },
+      html = { prettier },
+      css = { prettier },
+      json = { prettier },
+    },
+  },
 }
 
 lspcfg.sumneko_lua.setup {
