@@ -57,6 +57,8 @@ call plug#begin()
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'lukas-reineke/indent-blankline.nvim'
+    Plug 'chentoast/marks.nvim'
+
 
     Plug 'nvim-treesitter/nvim-treesitter', { 'run': ':TSUpdate' }
     Plug 'p00f/nvim-ts-rainbow'

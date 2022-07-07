@@ -11,6 +11,7 @@ antigen bundle colored-man-pages
 antigen bundle asdf
 antigen bundle shrink-path
 antigen bundle fzf
+antigen bundle aws
 antigen bundle compleat
 
 antigen bundle zsh-users/zsh-completions
