@@ -61,6 +61,15 @@ lspcfg.efm.setup {
       html = { prettier },
       css = { prettier },
       json = { prettier },
+      zsh = {
+        {
+          formatStdin = true,
+          lintSource = "shellcheck",
+          lintCommand = [[shellcheck -f gcc -x]],
+          lintFormats = { '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m' },
+          formatCommand = [[shfmt -ci -s -i 4 -bn]]
+        }
+      },
     },
   },
 }
