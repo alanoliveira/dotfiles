@@ -34,6 +34,7 @@ cmp.setup {
         luasnip = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
+        ['vim-dadbod-completion'] = "[DB]",
       })[entry.source.name]
 
       vim_item.dup = ({
@@ -50,3 +51,11 @@ cmp.setup {
     { name = 'vsnip' },
   })
 }
+
+cmp.setup.filetype({ 'sql' }, {
+  sources = cmp.config.sources({
+    { name = 'vim-dadbod-completion' },
+    { name = 'buffer' },
+    { name = 'vsnip' },
+  })
+})

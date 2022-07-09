@@ -31,6 +31,7 @@ call plug#begin()
     Plug 'tpope/vim-sensible' " set some default options
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-repeat'
     Plug 'windwp/nvim-autopairs'
     Plug 'bkad/CamelCaseMotion'
     Plug 'easymotion/vim-easymotion'
@@ -49,6 +50,10 @@ call plug#begin()
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'ziglang/zig.vim'
     Plug 'slim-template/vim-slim'
+    " database
+    Plug 'tpope/vim-dadbod'
+    Plug 'kristijanhusak/vim-dadbod-ui'
+    Plug 'kristijanhusak/vim-dadbod-completion'
 
     " appearance/ui
     Plug 'morhetz/gruvbox' " theme
