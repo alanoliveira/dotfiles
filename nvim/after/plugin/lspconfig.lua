@@ -38,7 +38,15 @@ local on_attach = function(client, bufnr)
 end
 
 lspcfg.solargraph.setup {
-  on_attach = on_attach
+  on_attach = on_attach,
+  init_options = {
+    formatting = false
+  },
+  settings = {
+    solargraph = {
+      diagnostics = false
+    },
+  },
 }
 lspcfg.zls.setup {
   on_attach = on_attach
@@ -70,6 +78,17 @@ lspcfg.efm.setup {
           formatCommand = [[shfmt -ci -s -i 4 -bn]]
         }
       },
+      ruby = {
+        {
+          lintCommand = "bundle exec rubocop --format emacs --force-exclusion --stdin ${INPUT}",
+          lintIgnoreExitCode = true,
+          lintStdin = true,
+          lintFormats = { '%f:%l:%c: %t: %m' },
+          rootMarkers = { 'Gemfile', '.rubocop.yml', "Rakefile" },
+          formatStdin = true,
+          formatCommand = "bundle exec rubocop --auto-correct --stdin ${INPUT} 2>/dev/null | sed '1,/^====================$/d'"
+        }
+      }
     },
   },
 }
