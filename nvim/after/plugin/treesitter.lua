@@ -1,22 +1,19 @@
 local status_ok, treesitter = pcall(require, "nvim-treesitter.configs")
 if not status_ok then
-    return
+  return
 end
 
 treesitter.setup {
-    ensure_installed = "all",
-    highlight = {
-        enable = true,
-    },
-    indent = {
-        enable = true
-    },
-    context_commentstring = {
-        enable = true,
-    },
-    rainbow = {
-        enable = true,
-        extended_mode = true,
-        max_file_lines = nil,
-    }
+  ensure_installed = "all",
+  highlight = {
+    enable = true,
+  },
+  context_commentstring = {
+    enable = true,
+  },
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+    max_file_lines = nil,
+  }
 }

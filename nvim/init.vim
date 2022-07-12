@@ -60,7 +60,6 @@ call plug#begin()
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'akinsho/bufferline.nvim'
     Plug 'kyazdani42/nvim-tree.lua'
-    Plug 'kyazdani42/nvim-web-devicons'
     Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'chentoast/marks.nvim'
 

@@ -48,6 +48,21 @@ local mapping_list = {
 }
 
 nvimtree.setup {
+  renderer = {
+    icons = {
+      glyphs = {
+        git = {
+          unstaged = "ﰣ",
+          staged = "✓",
+          unmerged = "",
+          renamed = "➜",
+          untracked = "★",
+          deleted = "",
+          ignored = "◌",
+        },
+      },
+    },
+  },
   view = {
     mappings = {
       custom_only = true,
