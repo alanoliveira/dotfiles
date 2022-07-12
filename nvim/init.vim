@@ -29,53 +29,53 @@ set formatoptions-=cro
 
 call plug#begin()
     Plug 'tpope/vim-sensible' " set some default options
-    Plug 'tpope/vim-commentary'
-    Plug 'tpope/vim-surround'
-    Plug 'tpope/vim-repeat'
-    Plug 'windwp/nvim-autopairs'
-    Plug 'bkad/CamelCaseMotion'
-    Plug 'easymotion/vim-easymotion'
-    Plug 'justinmk/vim-sneak'
-    Plug 'bronson/vim-visual-star-search'
-    Plug 'vim-scripts/ReplaceWithRegister'
-    Plug 'moll/vim-bbye'
-    Plug 'tpope/vim-dispatch'
-    Plug 'tpope/vim-fugitive'
-    Plug 'lewis6991/gitsigns.nvim'
-    Plug 'dag/vim-fish'
-    Plug 'vim-ruby/vim-ruby'
-    Plug 'tpope/vim-rails'
-    Plug 'tpope/vim-bundler'
-    Plug 'thoughtbot/vim-rspec'
-    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-    Plug 'ziglang/zig.vim'
-    Plug 'slim-template/vim-slim'
+    Plug 'tpope/vim-commentary' " shortcut to comment/uncomment
+    Plug 'tpope/vim-surround' " shortcut for surround with {,[,', etc
+    Plug 'tpope/vim-repeat' " allow use '.' to repeat some plugins actions
+    Plug 'windwp/nvim-autopairs' " auto close brackets, etc
+    Plug 'bkad/CamelCaseMotion' " allow use vim motion with CamelCaseStrings
+    Plug 'easymotion/vim-easymotion' " improved motion
+    Plug 'justinmk/vim-sneak' " allow move using two chars
+    Plug 'bronson/vim-visual-star-search' " improve usage of '*' on visual mode
+    Plug 'vim-scripts/ReplaceWithRegister' " shortcut to replace with register content
+    Plug 'moll/vim-bbye' " allow exit buffer without kill the window
+    Plug 'tpope/vim-dispatch' " allow run async commands
+    Plug 'tpope/vim-fugitive' " git interaction
+    Plug 'lewis6991/gitsigns.nvim' " show git status in sign column, and add shortcuts to reset, hunk
+    Plug 'tpope/vim-rails' " add rails command to command line mode
+    Plug 'tpope/vim-bundler' " add bundle command to command line mode
+
+    Plug 'thoughtbot/vim-rspec' " add rspec command to command line mode, and allow some smart spec runs
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " go
+    Plug 'ziglang/zig.vim' " zig
+    Plug 'slim-template/vim-slim' " slim
+
     " database
-    Plug 'tpope/vim-dadbod'
-    Plug 'kristijanhusak/vim-dadbod-ui'
-    Plug 'kristijanhusak/vim-dadbod-completion'
+    Plug 'tpope/vim-dadbod' " run queries in command line
+    Plug 'kristijanhusak/vim-dadbod-ui' " ui for dadbod
+    Plug 'kristijanhusak/vim-dadbod-completion' " autocomplete for sql 
 
     " appearance/ui
     Plug 'morhetz/gruvbox' " theme
-    Plug 'nvim-lualine/lualine.nvim'
-    Plug 'akinsho/bufferline.nvim'
-    Plug 'kyazdani42/nvim-tree.lua'
-    Plug 'lukas-reineke/indent-blankline.nvim'
-    Plug 'chentoast/marks.nvim'
+    Plug 'nvim-lualine/lualine.nvim' " status line
+    Plug 'akinsho/bufferline.nvim' " buffer as tabs
+    Plug 'kyazdani42/nvim-tree.lua' " side bar
+    Plug 'kyazdani42/nvim-web-devicons' " icons mapping
+    Plug 'lukas-reineke/indent-blankline.nvim' " display special characters and highlight block             
+    Plug 'chentoast/marks.nvim' " add marks in sign column
 
-    Plug 'nvim-treesitter/nvim-treesitter', { 'run': ':TSUpdate' }
-    Plug 'p00f/nvim-ts-rainbow'
-    Plug 'JoosepAlviste/nvim-ts-context-commentstring'
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim'
-    Plug 'sharkdp/fd'
+    Plug 'nvim-treesitter/nvim-treesitter', { 'run': ':TSUpdate' } " treesitter
+    Plug 'p00f/nvim-ts-rainbow' " colored brackets
+    Plug 'JoosepAlviste/nvim-ts-context-commentstring' " use treesitter to choose the type of comment
+    Plug 'nvim-lua/plenary.nvim' " lua commom functions
+    Plug 'nvim-telescope/telescope.nvim' " file explorer
 
     "LSP
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
-    Plug 'williamboman/nvim-lsp-installer'
-    Plug 'lukas-reineke/lsp-format.nvim'
-    Plug 'jose-elias-alvarez/null-ls.nvim'
+    Plug 'neovim/nvim-lspconfig' " lsp quick configs
+    Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim' " toggle lsp diagnostics
+    Plug 'williamboman/nvim-lsp-installer' " lsp servers quick install
+    Plug 'lukas-reineke/lsp-format.nvim' " allow toggle lsp formatting
+    Plug 'jose-elias-alvarez/null-ls.nvim' " generic language server
 
     "Code completion
     Plug 'hrsh7th/cmp-nvim-lsp'
