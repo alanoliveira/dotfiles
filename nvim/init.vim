@@ -64,7 +64,6 @@ call plug#begin()
     Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'chentoast/marks.nvim'
 
-
     Plug 'nvim-treesitter/nvim-treesitter', { 'run': ':TSUpdate' }
     Plug 'p00f/nvim-ts-rainbow'
     Plug 'JoosepAlviste/nvim-ts-context-commentstring'
@@ -77,6 +76,7 @@ call plug#begin()
     Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
     Plug 'williamboman/nvim-lsp-installer'
     Plug 'lukas-reineke/lsp-format.nvim'
+    Plug 'jose-elias-alvarez/null-ls.nvim'
 
     "Code completion
     Plug 'hrsh7th/cmp-nvim-lsp'

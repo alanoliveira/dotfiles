@@ -3,10 +3,11 @@ if not status_ok then
   return
 end
 
-require("nvim-lsp-installer").setup({ ensure_installed = { "sumneko_lua", "efm" } })
+require("nvim-lsp-installer").setup({ ensure_installed = { "sumneko_lua" } })
 require('toggle_lsp_diagnostics').init({ virtual_text = false })
 require "lsp_signature".setup({ floating_window = false, hint_prefix = "" })
 require("lsp-format").setup {}
+local null_ls = require("null-ls")
 
 local signs = {
   { name = "DiagnosticSignError", text = "" },
@@ -37,60 +38,25 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>l', vim.diagnostic.setloclist, bufopts)
 end
 
+local solargraph_cmd = function()
+  local cmd = { "solargraph", "stdio" }
+  if vim.fn.executable("bundle") == 1 then
+    cmd = { "bundle", "exec", "solargraph", "stdio" }
+  end
+  return cmd
+end
+
 lspcfg.solargraph.setup {
   on_attach = on_attach,
-  init_options = {
-    formatting = false
-  },
-  settings = {
-    solargraph = {
-      diagnostics = false
-    },
-  },
+  cmd = solargraph_cmd()
 }
+
 lspcfg.zls.setup {
   on_attach = on_attach
 }
+
 lspcfg.gopls.setup {
   on_attach = on_attach
-}
-
-local prettier = {
-  formatCommand = [[prettier --stdin-filepath ${INPUT} ${--tab-width:vim.o.tabstop}]],
-  formatStdin = true,
-}
-
-lspcfg.efm.setup {
-  on_attach = on_attach,
-  init_options = { documentFormatting = true },
-  settings = {
-    languages = {
-      javascript = { prettier },
-      html = { prettier },
-      css = { prettier },
-      json = { prettier },
-      zsh = {
-        {
-          formatStdin = true,
-          lintSource = "shellcheck",
-          lintCommand = [[shellcheck -f gcc -x]],
-          lintFormats = { '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m' },
-          formatCommand = [[shfmt -ci -s -i 4 -bn]]
-        }
-      },
-      ruby = {
-        {
-          lintCommand = "bundle exec rubocop --format emacs --force-exclusion --stdin ${INPUT}",
-          lintIgnoreExitCode = true,
-          lintStdin = true,
-          lintFormats = { '%f:%l:%c: %t: %m' },
-          rootMarkers = { 'Gemfile', '.rubocop.yml', "Rakefile" },
-          formatStdin = true,
-          formatCommand = "bundle exec rubocop --auto-correct --stdin ${INPUT} 2>/dev/null | sed '1,/^====================$/d'"
-        }
-      }
-    },
-  },
 }
 
 lspcfg.sumneko_lua.setup {
@@ -116,3 +82,11 @@ lspcfg.sumneko_lua.setup {
     },
   },
 }
+
+null_ls.setup({
+  on_attach = on_attach,
+  sources = {
+    null_ls.builtins.formatting.prettier,
+    null_ls.builtins.formatting.shfmt,
+  },
+})
