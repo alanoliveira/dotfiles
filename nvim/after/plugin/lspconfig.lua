@@ -38,17 +38,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>l', vim.diagnostic.setloclist, bufopts)
 end
 
-local solargraph_cmd = function()
-  local cmd = { "solargraph", "stdio" }
-  if vim.fn.executable("bundle") == 1 then
-    cmd = { "bundle", "exec", "solargraph", "stdio" }
-  end
-  return cmd
-end
-
 lspcfg.solargraph.setup {
-  on_attach = on_attach,
-  cmd = solargraph_cmd()
+  on_attach = on_attach
 }
 
 lspcfg.zls.setup {
