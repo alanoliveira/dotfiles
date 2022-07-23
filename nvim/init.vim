@@ -26,6 +26,9 @@ set list
 set path+=**
 set mouse=a
 set formatoptions-=cro
+set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+set grepformat=%f:%l:%c:%m,%f:%l:%m
+set spell spelllang=en_us spelloptions+=camel
 
 call plug#begin()
     Plug 'tpope/vim-sensible' " set some default options
@@ -63,6 +66,8 @@ call plug#begin()
     Plug 'kyazdani42/nvim-web-devicons' " icons mapping
     Plug 'lukas-reineke/indent-blankline.nvim' " display special characters and highlight block             
     Plug 'chentoast/marks.nvim' " add marks in sign column
+    Plug 'goolord/alpha-nvim' " startup screen
+    Plug 'lewis6991/spellsitter.nvim' " enable spellcheck only in commentaries and strings
 
     Plug 'nvim-treesitter/nvim-treesitter', { 'run': ':TSUpdate' } " treesitter
     Plug 'p00f/nvim-ts-rainbow' " colored brackets

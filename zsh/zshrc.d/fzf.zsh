@@ -37,7 +37,7 @@ function fzf-kill-process-widget() {
 zle -N fzf-kill-process-widget
 
 function fzf-select-file-widget() {
-  local RET=$(ag --ignore .git --hidden -l 2>/dev/null | FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS" $(__fzfcmd))
+  local RET=$(fd --type file --hidden --exclude .git 2>/dev/null | FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS" $(__fzfcmd))
   if [ ! -z "$RET" ]; then
     local LB=$LBUFFER
     local RB=$RBUFFER
