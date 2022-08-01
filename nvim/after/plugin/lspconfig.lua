@@ -6,7 +6,11 @@ end
 require("nvim-lsp-installer").setup({ ensure_installed = { "sumneko_lua" } })
 require('toggle_lsp_diagnostics').init({ virtual_text = false })
 require "lsp_signature".setup({ floating_window = false, hint_prefix = "" })
-require("lsp-format").setup {}
+require("lsp-format").setup({
+  ruby = {
+    exclude = { "solargraph" }
+  }
+})
 local null_ls = require("null-ls")
 
 local signs = {
@@ -38,7 +42,17 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>l', vim.diagnostic.setloclist, bufopts)
 end
 
+local solargraph_cmd = function()
+  local cmd = { "solargraph", "stdio" }
+  if HasGem("solargraph") == 0 then
+    cmd = { "bundle", "exec", "solargraph", "stdio" }
+  end
+
+  return cmd
+end
+
 lspcfg.solargraph.setup {
+  cmd = solargraph_cmd(),
   on_attach = on_attach
 }
 
@@ -74,10 +88,25 @@ lspcfg.sumneko_lua.setup {
   },
 }
 
+local rubocop_formatter = null_ls.builtins.formatting.rubocop
+if (HasGem("rubocop")) then
+  local finish_string = "====================\n"
+  rubocop_formatter = rubocop_formatter.with({
+    command = "bundle",
+    args = { "exec", "rubocop", "--auto-correct", "--stdin", "$FILENAME" },
+    filter = function(item)
+      local pos = string.find(item.text, finish_string)
+      item.text = string.sub(item.text, pos + string.len(finish_string))
+      return true
+    end
+  })
+end
+
 null_ls.setup({
   on_attach = on_attach,
   sources = {
     null_ls.builtins.formatting.prettier,
     null_ls.builtins.formatting.shfmt,
+    rubocop_formatter
   },
 })

@@ -5,7 +5,7 @@ end
 require('spellsitter').setup()
 
 treesitter.setup {
-  ensure_installed = "all",
+  auto_install = true,
   highlight = {
     enable = true,
   },
