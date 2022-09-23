@@ -1,63 +1,62 @@
-local status_ok, cmp = pcall(require, "cmp")
-if not status_ok then
-  return
-end
+local cmp = require("cmp")
+local lspkind = require('lspkind')
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
 cmp.setup {
-
   snippet = {
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
+      require("luasnip").lsp_expand(args.body)
     end,
   },
 
-  window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
+  sorting = {
+    comparators = {
+      cmp.config.compare.score,
+      cmp.config.compare.exact,
+      cmp.config.compare.offset,
+    }
   },
 
+  -- preselect = cmp.PreselectMode.None,
+
   mapping = cmp.mapping.preset.insert({
-    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-Space>'] = cmp.mapping.complete({}),
+    ['<C-y>'] = cmp.mapping.confirm({ select = true, }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<C-f>'] = cmp.mapping.confirm({ select = true, }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     ['<C-e>'] = cmp.mapping.abort(),
-    ["<C-k>"] = cmp.mapping.select_prev_item(),
-    ["<C-j>"] = cmp.mapping.select_next_item(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ['<tab>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  }),
+
+  sources = cmp.config.sources({
+    { name = 'vim-dadbod-completion' },
+    { name = "nvim_lsp" },
+    { name = 'luasnip' },
+    { name = "buffer", keyword_length = 3 },
+    { name = "path" },
   }),
 
   formatting = {
-    fields = { "kind", "abbr", "menu" },
-    format = function(entry, vim_item)
-      -- Kind icons
-      -- vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-      -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-      vim_item.menu = ({
-        nvim_lsp = "[LSP]",
-        luasnip = "[Snippet]",
-        buffer = "[Buffer]",
-        path = "[Path]",
+    format = lspkind.cmp_format {
+      with_text = true,
+      menu = {
         ['vim-dadbod-completion'] = "[DB]",
-      })[entry.source.name]
-
-      vim_item.dup = ({
-        vsnip = 0,
-      })[entry.source.name] or 0
-
-      return vim_item
-    end,
+        ['nvim_lsp'] = "[LSP]",
+        ['buffer'] = "[BUF]",
+        ['path'] = "[PATH]",
+        ['luasnip'] = "[SNIP]",
+      },
+    }
   },
 
-  sources = cmp.config.sources({
-    { name = 'buffer' },
-    { name = 'nvim_lsp' },
-    { name = 'vsnip' },
-  })
+  experimental = {
+    ghost_text = true
+  }
 }
 
-cmp.setup.filetype({ 'sql' }, {
-  sources = cmp.config.sources({
-    { name = 'vim-dadbod-completion' },
-    { name = 'buffer' },
-    { name = 'vsnip' },
-  })
-})
+cmp.event:on(
+  'confirm_done', function()
+  local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+  if filetype ~= "ruby" then
+    cmp_autopairs.on_confirm_done()
+  end
+end
+)

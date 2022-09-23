@@ -1,46 +1,35 @@
-local status_ok, lspcfg = pcall(require, "lspconfig")
-if not status_ok then
-  return
-end
+-- IMPORTANT: make sure to setup lua-dev BEFORE lspconfig
+require("lua-dev").setup({})
 
-require("nvim-lsp-installer").setup({ ensure_installed = { "sumneko_lua" } })
-require('toggle_lsp_diagnostics').init({ virtual_text = false })
-require "lsp_signature".setup({ floating_window = false, hint_prefix = "" })
-require("lsp-format").setup({
-  ruby = {
-    exclude = { "solargraph" }
-  }
-})
+local lspcfg = require("lspconfig")
+local lsp_format = require("lsp-format")
 local null_ls = require("null-ls")
+require("nvim-lsp-installer").setup({ ensure_installed = { "sumneko_lua" } })
+require "lsp_signature".setup({ floating_window = false, hint_prefix = "" })
+lsp_format.setup({ ruby = { exclude = { "solargraph" } } })
 
-local signs = {
-  { name = "DiagnosticSignError", text = "" },
-  { name = "DiagnosticSignWarn", text = "" },
-  { name = "DiagnosticSignHint", text = "" },
-  { name = "DiagnosticSignInfo", text = "" },
-}
+vim.fn.sign_define("DiagnosticSignError", { texthl = "DiagnosticSignError", text = "", numhl = "" })
+vim.fn.sign_define("DiagnosticSignWarning", { texthl = "DiagnosticSignWarning", text = "", numhl = "" })
+vim.fn.sign_define("DiagnosticSignHint", { texthl = "DiagnosticSignHint", text = "", numhl = "" })
+vim.fn.sign_define("DiagnosticSignInfo", { texthl = "DiagnosticSignInfo", text = "", numhl = "" })
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "rounded",
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = "rounded",
-})
-
-for _, sign in ipairs(signs) do
-  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-end
+-- vim.diagnostic.config({ virtual_text = false })
 
 local on_attach = function(client, bufnr)
-  require "lsp-format".on_attach(client)
-
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', '<leader>l', vim.diagnostic.setloclist, bufopts)
+  local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "[lsp] goto definition" })
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "[lsp] goto declaration" })
+  vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, { buffer = bufnr, desc = "[lsp] rename" })
+  vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "[lsp] code action" })
+  vim.keymap.set("n", "<C-s>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "[lsp] signature" })
+  if filetype ~= "lua" then
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "[lsp] hover" })
+  end
+  lsp_format.on_attach(client)
 end
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local solargraph_cmd = function()
   local cmd = { "solargraph", "stdio" }
@@ -53,19 +42,28 @@ end
 
 lspcfg.solargraph.setup {
   cmd = solargraph_cmd(),
-  on_attach = on_attach
+  on_attach = on_attach,
+  capabilities = capabilities,
 }
 
 lspcfg.zls.setup {
-  on_attach = on_attach
+  on_attach = on_attach,
+  capabilities = capabilities,
 }
 
 lspcfg.gopls.setup {
-  on_attach = on_attach
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+lspcfg.rust_analyzer.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
 }
 
 lspcfg.sumneko_lua.setup {
   on_attach = on_attach,
+  capabilities = capabilities,
   settings = {
     Lua = {
       runtime = {
@@ -104,7 +102,11 @@ end
 
 null_ls.setup({
   on_attach = on_attach,
+  capabilities = capabilities,
   sources = {
+    -- null_ls.builtins.code_actions.eslint_d,
+    -- null_ls.builtins.formatting.eslint_d,
+    -- null_ls.builtins.diagnostics.eslint_d,
     null_ls.builtins.formatting.prettier,
     null_ls.builtins.formatting.shfmt,
     rubocop_formatter

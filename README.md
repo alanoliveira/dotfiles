@@ -5,7 +5,6 @@
 - asdf: https://asdf-vm.com/
 - nvim: https://neovim.io/
 - tmux: https://github.com/tmux/tmux/wiki
-- fpp: https://github.com/facebook/PathPicker
 - fzf: https://github.com/junegunn/fzf
 - exa: https://the.exa.website/
 - fd: https://github.com/sharkdp/fd

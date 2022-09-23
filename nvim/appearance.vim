@@ -1,5 +1,5 @@
 syntax enable
-colorscheme gruvbox
+colorscheme gruvbox-material
 
 set termguicolors
 set colorcolumn=120
@@ -14,6 +14,9 @@ highlight SpellBad guisp=red cterm=undercurl
 highlight QuickFixLine ctermfg=NONE guifg=NONE
 match ExtraWhitespace /\s\+\%#\@<!$/
 highlight ExtraWhitespace ctermbg=red guibg=red
+
+highlight! link MatchWord MatchParen
+highlight! link MatchWordCur MatchParenCur
 
 augroup _appearance_settings
     autocmd!

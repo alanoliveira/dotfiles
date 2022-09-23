@@ -1,11 +1,6 @@
-local status_ok, treesitter = pcall(require, "nvim-treesitter.configs")
-if not status_ok then
-  return
-end
 require('spellsitter').setup()
-
-treesitter.setup {
-  auto_install = true,
+require "nvim-treesitter.configs".setup {
+  auto_install = false,
   highlight = {
     enable = true,
   },
@@ -16,5 +11,11 @@ treesitter.setup {
     enable = true,
     extended_mode = true,
     max_file_lines = nil,
-  }
+  },
+  playground = {
+    enable = true,
+  },
+  matchup = {
+    enable = true,
+  },
 }

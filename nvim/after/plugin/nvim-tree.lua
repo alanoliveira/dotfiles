@@ -1,10 +1,4 @@
-local status_ok, nvimtree = pcall(require, "nvim-tree")
-if not status_ok then
-  return
-end
-
-vim.api.nvim_set_keymap('n', '<C-b>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-b>', '<Esc>:NvimTreeToggle<CR>', { noremap = true, silent = true })
+local nvimtree = require("nvim-tree")
 
 local mapping_list = {
   { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },

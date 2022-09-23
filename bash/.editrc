@@ -1,0 +1,5 @@
+bind -v
+
+bind "^P" ed-search-prev-history
+bind "^N" ed-search-next-history
+bind "^R" em-inc-search-prev

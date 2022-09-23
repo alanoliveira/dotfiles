@@ -10,7 +10,8 @@ tmux:
 	@ln -fs "$(ROOT_DIR)/tmux/.tmux.conf.local" "$(HOME)/"
 
 shell-dependencies:
-	@ln -fs $(ROOT_DIR)/bash/.inputrc ~/.inputrc # rails console uses it
+	@ln -fs $(ROOT_DIR)/bash/.inputrc ~/.inputrc
+	@ln -fs $(ROOT_DIR)/bash/.editrc ~/.editrc
 	@ln -fs $(ROOT_DIR)/bash/.irbrc ~/.irbrc
 	@ln -fs $(ROOT_DIR)/bash/.pryrc ~/.pryrc
 	@ln -fs $(ROOT_DIR)/asdf/.asdfrc ~/.asdfrc
