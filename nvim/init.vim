@@ -54,6 +54,7 @@ call plug#begin()
     Plug 'mrjones2014/smart-splits.nvim' " improved panel resizing
     Plug 'andymass/vim-matchup' " matchit better alternative
     Plug 'direnv/direnv.vim' " direnv integration
+    Plug 'akinsho/toggleterm.nvim' " terminal window manipulation
 
     " snippets
     Plug 'L3MON4D3/LuaSnip', { 'tag': 'v<CurrentMajor>.*' } " snippets plugin
@@ -72,7 +73,6 @@ call plug#begin()
     " git
     Plug 'tpope/vim-fugitive' " git interaction
     Plug 'lewis6991/gitsigns.nvim' " show git status in sign column, and add shortcuts to reset, hunk
-    Plug 'kdheepak/lazygit.nvim' " lazy git
 
     " debugger
     Plug 'mfussenegger/nvim-dap' " better debugger
