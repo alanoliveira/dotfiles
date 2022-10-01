@@ -21,8 +21,8 @@ vim.keymap.set({ "i", "s" }, "<C-n>", function()
   end
 end, { silent = true })
 
-vim.keymap.set({ "i", "s" }, "<C-h>", "<Plug>luasnip-prev-choice", { silent = true })
-vim.keymap.set({ "i", "s" }, "<C-l>", "<Plug>luasnip-next-choice", { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-p>", "<Plug>luasnip-prev-choice", { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-n>", "<Plug>luasnip-next-choice", { silent = true })
 
 
 require("luasnip/loaders/from_vscode").lazy_load()
