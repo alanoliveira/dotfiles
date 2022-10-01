@@ -36,6 +36,7 @@ set inccommand=split
 let g:loaded_matchit = 1 " disable matchit
 let g:mapleader=','
 let g:camelcasemotion_key='<leader>'
+let g:direnv_auto=0
 
 lua require "alan.globals"
 
@@ -53,6 +54,7 @@ call plug#begin()
     Plug 'lukas-reineke/indent-blankline.nvim' " display special characters and highlight block
     Plug 'mrjones2014/smart-splits.nvim' " improved panel resizing
     Plug 'andymass/vim-matchup' " matchit better alternative
+    Plug 'direnv/direnv.vim' " direnv integration
 
     " snippets
     Plug 'L3MON4D3/LuaSnip', { 'tag': 'v<CurrentMajor>.*' } " snippets plugin

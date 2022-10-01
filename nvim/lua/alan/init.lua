@@ -41,6 +41,8 @@ vim.api.nvim_create_autocmd("InsertEnter", { group = alan, command = "set norela
 vim.api.nvim_create_autocmd("InsertLeave", { group = alan, command = "set relativenumber" })
 vim.api.nvim_create_autocmd({ "BufEnter", "BufNew", "TermOpen" }, { group = alan, command = "startinsert", pattern = { "term://*" } })
 vim.api.nvim_create_autocmd("TextYankPost", { group = alan, pattern = "*", command = "lua require('vim.highlight').on_yank()" })
+vim.api.nvim_create_autocmd("VimEnter", { group = alan, command = "DirenvExport" })
+vim.api.nvim_create_autocmd("DirChanged", { group = alan, command = "DirenvExport" })
 
 vim.api.nvim_create_user_command("TrimTrailingWhiteSpaces", "%s/\\s\\+$//e", {})
 vim.api.nvim_create_user_command("ClearSearch", "let @/ = ''", {})
