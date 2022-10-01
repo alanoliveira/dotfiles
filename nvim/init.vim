@@ -47,7 +47,6 @@ call plug#begin()
     Plug 'bkad/CamelCaseMotion' " allow use vim motion with CamelCaseStrings
     " Plug 'justinmk/vim-sneak' " allow move using two chars
     Plug 'bronson/vim-visual-star-search' " improve usage of '*' on visual mode
-    Plug 'tpope/vim-dispatch' " allow run async commands
     Plug 'kylechui/nvim-surround' " shortcut for surround with {,[,', etc
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } " use nvim inside chrome inputs
     Plug 'lewis6991/spellsitter.nvim' " enable spellcheck only in commentaries and strings
@@ -69,8 +68,6 @@ call plug#begin()
     Plug 'folke/lua-dev.nvim' " for plugin dev
     Plug 'milisims/nvim-luaref' " add api documentation to h:
     Plug 'slim-template/vim-slim' " slim
-    Plug 'tpope/vim-rails' " add rails command to command line mode
-    Plug 'tpope/vim-bundler' " add bundle command to command line mode
 
     " git
     Plug 'tpope/vim-fugitive' " git interaction
