@@ -60,13 +60,17 @@ call plug#begin()
     Plug 'L3MON4D3/LuaSnip', { 'tag': 'v<CurrentMajor>.*' } " snippets plugin
     Plug 'rafamadriz/friendly-snippets' " collection of snippets
 
+    " test
+    Plug 'nvim-neotest/neotest' " interect with tests
+    Plug 'nvim-neotest/neotest-go' " go adapter
+    Plug 'olimorris/neotest-rspec' " rspec adapter
+
     " language specifc stuffs
     Plug 'folke/lua-dev.nvim' " for plugin dev
     Plug 'milisims/nvim-luaref' " add api documentation to h:
     Plug 'slim-template/vim-slim' " slim
     Plug 'tpope/vim-rails' " add rails command to command line mode
     Plug 'tpope/vim-bundler' " add bundle command to command line mode
-    Plug 'thoughtbot/vim-rspec' " add rspec command to command line mode, and allow some smart spec runs
 
     " git
     Plug 'tpope/vim-fugitive' " git interaction
