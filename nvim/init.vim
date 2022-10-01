@@ -29,7 +29,6 @@ set nowrap
 set list
 set path+=**
 set laststatus=3
-set formatoptions+=r
 set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 set grepformat=%f:%l:%c:%m,%f:%l:%m
 set spell spelllang=en_us spelloptions+=camel
