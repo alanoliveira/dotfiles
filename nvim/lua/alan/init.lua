@@ -10,10 +10,6 @@ map({ "t", "n" }, "<A-h>", "<cmd> BufferLineCyclePrev<CR>", { desc = "goto prev 
 map({ "t", "n" }, "<A-l>", "<cmd> BufferLineCycleNext<CR>", { desc = "goto next buffer" })
 map({ "t", "n" }, "<A-H>", "<cmd> BufferLineMovePrev<CR>", { desc = "move buffer left" })
 map({ "t", "n" }, "<A-L>", "<cmd> BufferLineMoveNext<CR>", { desc = "move buffer right" })
-map("n", "<C-w>H", "<cmd> lua require('smart-splits').resize_left(); require('smart-splits').start_resize_mode()<CR>", { desc = "resize ←" })
-map("n", "<C-w>J", "<cmd> lua require('smart-splits').resize_down(); require('smart-splits').start_resize_mode()<CR>", { desc = "resize ↓" })
-map("n", "<C-w>K", "<cmd> lua require('smart-splits').resize_up(); require('smart-splits').start_resize_mode()<CR>", { desc = "resize →" })
-map("n", "<C-w>L", "<cmd> lua require('smart-splits').resize_right(); require('smart-splits').start_resize_mode()<CR>", { desc = "resize ↑" })
 map("n", "<space>/", "<cmd> ToggleHLS<CR>", { desc = "toggle hls" })
 
 -- Git
