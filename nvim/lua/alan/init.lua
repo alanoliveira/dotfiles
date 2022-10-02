@@ -11,6 +11,7 @@ map({ "t", "n" }, "<A-l>", "<cmd> BufferLineCycleNext<CR>", { desc = "goto next 
 map({ "t", "n" }, "<A-H>", "<cmd> BufferLineMovePrev<CR>", { desc = "move buffer left" })
 map({ "t", "n" }, "<A-L>", "<cmd> BufferLineMoveNext<CR>", { desc = "move buffer right" })
 map("n", "<space>/", "<cmd> ToggleHLS<CR>", { desc = "toggle hls" })
+map("s", "<C-w>", "<BS>i", { desc = "delete word" }) -- used to delete suggestions on luasnip
 
 -- Git
 map({ "n", "v" }, "<space>gs", "<cmd> :Gitsigns stage_hunk<CR>", { desc = "stage hunk" })

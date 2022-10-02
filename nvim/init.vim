@@ -69,6 +69,7 @@ call plug#begin()
     Plug 'folke/lua-dev.nvim' " for plugin dev
     Plug 'milisims/nvim-luaref' " add api documentation to h:
     Plug 'slim-template/vim-slim' " slim
+    Plug 'ziglang/zig.vim', { 'for': 'zig' } " zig
 
     " git
     Plug 'tpope/vim-fugitive' " git interaction
