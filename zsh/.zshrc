@@ -30,5 +30,9 @@ for file in $DOTFILES/zsh/zshrc.d/**/*(.); do
     source "$file"
 done
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f $DOTFILES/zsh/.p10k.zsh ]] || source $DOTFILES/zsh/.p10k.zsh
+if [[ $VIM && -f $DOTFILES/zsh/.p10k_vim.zsh ]]
+then
+  source $DOTFILES/zsh/.p10k_vim.zsh
+else
+  [[ ! -f $DOTFILES/zsh/.p10k.zsh ]] || source $DOTFILES/zsh/.p10k.zsh
+fi

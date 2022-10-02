@@ -1,6 +1,5 @@
 local map = vim.keymap.set
 
-map("t", "<space><esc>", "<C-\\><C-n>", { desc = "exit terminal mode" })
 map("n", "<space>q", "<cmd> bdelete<CR>", { desc = "close buffer" })
 map("n", "<C-b>", "<cmd> NvimTreeToggle<CR>", { desc = "toggle nvim tree" })
 map({ "t", "n" }, "<C-h>", "<cmd> lua require('smart-splits').move_cursor_left()<CR>", { desc = "move to left split" })
@@ -39,10 +38,10 @@ vim.api.nvim_create_autocmd("FileType", { group = maps_au, pattern = easy_close_
 local alan = vim.api.nvim_create_augroup("alan", {})
 vim.api.nvim_create_autocmd("InsertEnter", { group = alan, command = "set norelativenumber" })
 vim.api.nvim_create_autocmd("InsertLeave", { group = alan, command = "set relativenumber" })
-vim.api.nvim_create_autocmd({ "BufEnter", "BufNew", "TermOpen" }, { group = alan, command = "startinsert", pattern = { "term://*" } })
 vim.api.nvim_create_autocmd("TextYankPost", { group = alan, pattern = "*", command = "lua require('vim.highlight').on_yank()" })
 vim.api.nvim_create_autocmd("VimEnter", { group = alan, command = "DirenvExport" })
 vim.api.nvim_create_autocmd("DirChanged", { group = alan, command = "DirenvExport" })
+vim.api.nvim_create_autocmd({ "TermOpen" }, { group = alan, command = "startinsert", pattern = { "term://*" } })
 
 vim.api.nvim_create_user_command("TrimTrailingWhiteSpaces", "%s/\\s\\+$//e", {})
 vim.api.nvim_create_user_command("ClearSearch", "let @/ = ''", {})
