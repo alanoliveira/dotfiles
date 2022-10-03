@@ -12,6 +12,7 @@ set visualbell
 set nobackup
 set noswapfile
 set number
+set relativenumber
 set signcolumn=yes
 set scrolloff=2
 set showmatch
