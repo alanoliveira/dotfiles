@@ -1,5 +1,6 @@
 *~
 .DS_Store
 solargraph_definitions.rb
-Gemfile.local*
+Gemfile.local.lock
 .envrc
+*.local
