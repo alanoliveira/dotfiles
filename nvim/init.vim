@@ -5,6 +5,7 @@ if exists('g:started_by_firenvim')
   finish
 endif
 
+set cmdheight=0
 set clipboard=unnamedplus
 set noshowmode
 set hidden
@@ -47,10 +48,8 @@ call plug#begin()
     Plug 'windwp/nvim-autopairs' " auto close brackets, etc
     Plug 'bkad/CamelCaseMotion' " allow use vim motion with CamelCaseStrings
     " Plug 'justinmk/vim-sneak' " allow move using two chars
-    Plug 'bronson/vim-visual-star-search' " improve usage of '*' on visual mode
     Plug 'kylechui/nvim-surround' " shortcut for surround with {,[,', etc
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } " use nvim inside chrome inputs
-    Plug 'lewis6991/spellsitter.nvim' " enable spellcheck only in commentaries and strings
     Plug 'lukas-reineke/indent-blankline.nvim' " display special characters and highlight block
     Plug 'mrjones2014/smart-splits.nvim' " improved panel resizing
     Plug 'andymass/vim-matchup' " matchit better alternative
