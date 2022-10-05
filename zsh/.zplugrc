@@ -2,7 +2,6 @@ source "$DOTFILES/zsh/zplug/init.zsh"
 
 zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "plugins/z", from:oh-my-zsh
-zplug "plugins/sudo", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/shrink-path", from:oh-my-zsh
