@@ -1,6 +1,6 @@
 local map = vim.keymap.set
 
-map("n", "<space>q", "<cmd> bdelete<CR>", { desc = "close buffer" })
+map("n", "<space>q", function() require('bufdelete').bufdelete(0, false) end, { desc = "close buffer" })
 map("n", "<C-b>", "<cmd> NvimTreeToggle<CR>", { desc = "toggle nvim tree" })
 map({ "t", "n" }, "<C-h>", "<cmd> lua require('smart-splits').move_cursor_left()<CR>", { desc = "move to left split" })
 map({ "t", "n" }, "<C-j>", "<cmd> lua require('smart-splits').move_cursor_down()<CR>", { desc = "move to down split" })
@@ -30,7 +30,7 @@ map("n", "[g", "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'", 
 
 local maps_au = vim.api.nvim_create_augroup("au_maps", {})
 local easy_close_ft = { "qf", "help", "man", "lspinfo", "*doc", "dap-repl" }
-vim.api.nvim_create_autocmd("FileType", { group = maps_au, pattern = easy_close_ft, command = "nnoremap <buffer> q :bd!<CR>" })
+vim.api.nvim_create_autocmd("FileType", { group = maps_au, pattern = easy_close_ft, command = "nnoremap <buffer> q <cmd>lua require('bufdelete').bufdelete(0, true)<CR>" })
 
 local alan = vim.api.nvim_create_augroup("alan", {})
 vim.api.nvim_create_autocmd("InsertEnter", { group = alan, command = "set norelativenumber" })

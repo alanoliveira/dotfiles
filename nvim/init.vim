@@ -55,6 +55,7 @@ call plug#begin()
     Plug 'andymass/vim-matchup' " matchit better alternative
     Plug 'direnv/direnv.vim' " direnv integration
     Plug 'akinsho/toggleterm.nvim' " terminal window manipulation
+    Plug 'famiu/bufdelete.nvim' " delete buffer preserving window
 
     " snippets
     Plug 'L3MON4D3/LuaSnip', { 'tag': 'v<CurrentMajor>.*' } " snippets plugin
