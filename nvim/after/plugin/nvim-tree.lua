@@ -38,7 +38,7 @@ local mapping_list = {
   { key = "W", action = "collapse_all" },
   { key = "S", action = "search_node" },
   { key = "<C-k>", action = "toggle_file_info" },
-  { key = ".", action = "run_file_command" }
+  { key = ".", action = "run_file_command" },
 }
 
 nvimtree.setup {
@@ -60,7 +60,7 @@ nvimtree.setup {
   view = {
     mappings = {
       custom_only = true,
-      list = mapping_list
+      list = mapping_list,
     },
   },
   update_focused_file = {
@@ -71,5 +71,5 @@ nvimtree.setup {
   diagnostics = {
     enable = true,
     show_on_dirs = true,
-  }
+  },
 }

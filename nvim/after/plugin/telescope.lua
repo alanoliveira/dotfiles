@@ -15,7 +15,7 @@ telescope.setup {
   pickers = {
     find_files = {
       previewer = false,
-      hidden = true
+      hidden = true,
     },
     diagnostics = {
       previewer = false,
@@ -23,7 +23,7 @@ telescope.setup {
   },
 
   extensions = {
-    'dap'
+    "dap",
   },
 }
 

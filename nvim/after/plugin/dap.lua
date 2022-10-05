@@ -1,7 +1,7 @@
-local dap = require('dap')
-local dapui = require('dapui')
-require('dap-go').setup()
-require('nvim-dap-virtual-text').setup({})
+local dap = require("dap")
+local dapui = require("dapui")
+require("dap-go").setup()
+require("nvim-dap-virtual-text").setup({})
 dapui.setup()
 
 dap.listeners.before.event_terminated["dapui_config"] = function()
@@ -13,23 +13,23 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 dap.adapters.lldb = {
-  type = 'executable',
-  command = 'lldb-vscode-11',
-  name = 'lldb',
+  type = "executable",
+  command = "lldb-vscode-11",
+  name = "lldb",
   options = {
-    detached = true
-  }
+    detached = true,
+  },
 }
 
 dap.configurations.zig = {
   {
-    name = 'Launch',
-    type = 'lldb',
-    request = 'launch',
+    name = "Launch",
+    type = "lldb",
+    request = "launch",
     program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/zig-out/bin/', 'file')
+      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/zig-out/bin/", "file")
     end,
-    cwd = '${workspaceFolder}',
+    cwd = "${workspaceFolder}",
     stopOnEntry = false,
     args = {},
   },
@@ -40,7 +40,8 @@ vim.api.nvim_create_autocmd("FileType", { group = augroup, pattern = "dap-repl",
 
 local map = vim.keymap.set
 map("n", "<space>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { desc = "[dap] toggle breakpoint" })
-map("n", "<space>dB", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", { desc = "[dap] conditional breakpoint" })
+map("n", "<space>dB", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+  { desc = "[dap] conditional breakpoint" })
 map("n", "<space>dr", "<cmd>lua require'dap'.repl.open()<CR>", { desc = "[dap] toggle REPL" })
 map("n", "<space>dtu", "<cmd>lua require'dapui'.toggle()<CR>", { desc = "[dap] toggle UI" })
 map("n", "<space>dtr", "<cmd>lua require'dap'.repl.toggle()<CR>", { desc = "[dap] toggle REPL" })
