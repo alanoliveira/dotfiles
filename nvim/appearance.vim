@@ -1,5 +1,5 @@
 syntax enable
-colorscheme gruvbox-material
+colorscheme sonokai
 
 set termguicolors
 set colorcolumn=120
