@@ -14,7 +14,7 @@ end
 
 dap.adapters.lldb = {
   type = "executable",
-  command = "lldb-vscode-11",
+  command = "lldb-vscode",
   name = "lldb",
   options = {
     detached = true,
@@ -28,6 +28,20 @@ dap.configurations.zig = {
     request = "launch",
     program = function()
       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/zig-out/bin/", "file")
+    end,
+    cwd = "${workspaceFolder}",
+    stopOnEntry = false,
+    args = {},
+  },
+}
+
+dap.configurations.rust = {
+  {
+    name = "Launch",
+    type = "lldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
     end,
     cwd = "${workspaceFolder}",
     stopOnEntry = false,
