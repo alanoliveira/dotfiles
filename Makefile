@@ -24,7 +24,14 @@ git:
 	@ln -fs "$(ROOT_DIR)/git/.gitconfig" "$(HOME)/"
 	@cp -n "$(ROOT_DIR)/git/.gitconfig.user" "$(HOME)/"
 
+alacritty:
+	@ln -fs "$(ROOT_DIR)/alacritty" "$(HOME)/.config/alacritty"
+
+i3wm:
+	@ln -fs "$(ROOT_DIR)/i3" "$(HOME)/.config/i3"
+	@ln -fs "$(ROOT_DIR)/polybar" "$(HOME)/.config/polybar"
+
 karabiner:
 	@ln -fs "$(ROOT_DIR)/karabiner" "$(HOME)/.config/karabiner"
 
-.PHONY: nvim tmux zsh git karabiner omf shell-dependencies
+.PHONY: nvim tmux zsh git karabiner omf shell-dependencies alacritty i3wm
