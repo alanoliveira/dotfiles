@@ -1,6 +1,3 @@
-[include]
-	path = .gitconfig.user
-
 [pull]
 	rebase = false
 
@@ -10,7 +7,6 @@
 	di = diff
 
 [core]
-	excludesfile = ~/dotfiles/git/.gitignore_global
 	editor = nvim
 	autocrlf = input
 	quotePath = false ; show japanese dir names as it its
@@ -18,7 +14,7 @@
 
 [init]
 	defaultBranch = master
-	templatedir = ~/dotfiles/git/.git-templates
+	templatedir = git-templates
 
 [url "git@github.com:"]
 	insteadOf = https://github.com/

@@ -1,4 +1,4 @@
-source "$DOTFILES/zsh/zplug/init.zsh"
+source "$HOME/.zplug/init.zsh"
 
 zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "plugins/z", from:oh-my-zsh

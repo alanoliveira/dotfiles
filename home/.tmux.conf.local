@@ -363,9 +363,6 @@ set -g @fingers-shift-action :copy:
 set-option -g automatic-rename-format "#{?#{==:#{pane_current_command},#{b:SHELL}}, #{b:pane_current_path},#{?#{==:#{pane_current_command},nvim}, #{b:pane_current_path},#{pane_current_command}}}"
 set-option -g status-interval 2
 
-# Automatically creates a session to edit dotfiles
-set-option -s command-alias[100] dotf="run-shell '$DOTFILES/tmux/plugins/util.tmux tmux_util_create_dotfiles_session'"
-
 # -- tpm -----------------------------------------------------------------------
 
 # while I don't use tpm myself, many people requested official support so here

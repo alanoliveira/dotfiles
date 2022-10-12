@@ -4,3 +4,4 @@ solargraph_definitions.rb
 Gemfile.local.lock
 .envrc
 *.local
+!.tmux.conf.local
