@@ -1,5 +1,6 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
+local pickers = require "telescope.pickers"
 
 telescope.setup {
   defaults = {
@@ -17,22 +18,33 @@ telescope.setup {
       previewer = false,
       hidden = true,
     },
+    builtin = {
+      include_extensions = true,
+    },
     diagnostics = {
       previewer = false,
     },
-  },
-
-  extensions = {
-    "dap",
+    oldfiles = {
+      only_cwd = true,
+    },
+    buffers = {
+      attach_mappings = function(_, map)
+        map("n", "d", actions.delete_buffer)
+        return true
+      end,
+    },
   },
 }
 
+telescope.load_extension("dap")
+
+local builtin = require("telescope.builtin")
 local map = vim.keymap.set
-map("n", "<space>ft", "<cmd> :Telescope find_files<CR>", { desc = "find_files" })
-map("n", "<space>fb", "<cmd> :Telescope buffers<CR>", { desc = "buffers" })
-map("n", "<space>fr", "<cmd> :Telescope live_grep<CR>", { desc = "live grep" })
-map("n", "<space>fg", "<cmd> :Telescope git_status<CR>", { desc = "git status" })
-map("n", "<space>fs", "<cmd> :Telescope lsp_document_symbols<CR>", { desc = "document symbols" })
-map("n", "<space>fd", "<cmd> :Telescope diagnostics<CR>", { desc = "document symbols" })
-map("n", "<space>fo", "<cmd> :Telescope oldfiles<CR>", { desc = "telescope" })
-map("n", "<space>ff", "<cmd> :Telescope<CR>", { desc = "telescope" })
+map("n", "<space>ft", builtin.find_files, { desc = "find_files" })
+map("n", "<space>fb", builtin.buffers, { desc = "buffers" })
+map("n", "<space>fr", builtin.live_grep, { desc = "live grep" })
+map("n", "<space>fg", builtin.git_status, { desc = "git status" })
+map("n", "<space>fs", builtin.lsp_document_symbols, { desc = "document symbols" })
+map("n", "<space>fd", builtin.diagnostics, { desc = "diagnostics" })
+map("n", "<space>fo", builtin.oldfiles, { desc = "old files" })
+map("n", "<space>ff", builtin.builtin, { desc = "all pickers" })
