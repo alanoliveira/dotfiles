@@ -10,6 +10,7 @@ zplug "plugins/compleat", from:oh-my-zsh
 zplug "plugins/aws", from:oh-my-zsh
 zplug "plugins/heroku", from:oh-my-zsh
 zplug "plugins/asdf", from:oh-my-zsh
+zplug "plugins/ssh-agent", from:oh-my-zsh
 
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
