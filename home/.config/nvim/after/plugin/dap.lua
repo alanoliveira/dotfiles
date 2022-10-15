@@ -52,6 +52,8 @@ dap.configurations.rust = {
 
 local augroup = vim.api.nvim_create_augroup("dap", {})
 vim.api.nvim_create_autocmd("FileType", { group = augroup, pattern = "dap-repl", command = "set nobuflisted" })
+vim.api.nvim_create_autocmd("FileType",
+  { group = augroup, pattern = "dap-repl", command = "lua require('dap.ext.autocompl').attach()" })
 
 local map = vim.keymap.set
 map("n", "<space>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { desc = "[dap] toggle breakpoint" })
