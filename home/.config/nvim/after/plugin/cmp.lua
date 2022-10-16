@@ -52,11 +52,4 @@ cmp.setup {
   },
 }
 
-cmp.event:on(
-  "confirm_done", function()
-  local filetype = vim.api.nvim_buf_get_option(0, "filetype")
-  if filetype ~= "ruby" then
-    cmp_autopairs.on_confirm_done()
-  end
-end
-)
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({}))
