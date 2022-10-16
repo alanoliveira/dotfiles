@@ -2,7 +2,13 @@ require("neodev").setup({}) -- IMPORTANT: make sure to setup neodev BEFORE lspco
 require("nvim-lsp-installer").setup({ ensure_installed = { "sumneko_lua" } })
 require "lsp_signature".setup({ floating_window = false, hint_prefix = "" })
 require("lsp-format").setup({})
+require("lsp_lines").setup()
 local lspcfg = require("lspconfig")
+
+vim.diagnostic.config({
+  virtual_text = true,
+  virtual_lines = false, -- disable lsp_lines by default
+})
 
 lspcfg.solargraph.setup {
   on_attach = require("alan.lsp_handlers").on_attach,
