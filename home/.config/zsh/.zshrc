@@ -1,3 +1,4 @@
+export VI_MODE_SET_CURSOR=true
 export EDITOR=nvim
 
 source "$XDG_CONFIG_HOME/zsh/.zplugrc"
