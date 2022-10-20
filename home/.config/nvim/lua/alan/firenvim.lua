@@ -20,5 +20,5 @@ end, })
 
 local local_settings = {}
 local_settings[".*"] = { takeover = "never" }
-local_settings["https?://github\\.com"] = { takeover = "always" }
+-- local_settings["https?://github\\.com"] = { takeover = "always" }
 vim.g.firenvim_config = { globalSettings = { alt = "all" }, localSettings = local_settings }
