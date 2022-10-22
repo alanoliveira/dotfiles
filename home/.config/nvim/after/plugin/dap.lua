@@ -4,6 +4,10 @@ require("dap-go").setup()
 require("nvim-dap-virtual-text").setup({})
 dapui.setup()
 
+dap.listeners.before.event_initialized["dapui_config"] = function()
+  dapui.open({})
+end
+
 dap.listeners.before.event_terminated["dapui_config"] = function()
   dapui.close({})
 end
