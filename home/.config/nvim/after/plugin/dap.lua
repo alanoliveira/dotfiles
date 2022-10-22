@@ -1,28 +1,12 @@
 local dap = require("dap")
-local dapui = require("dapui")
+require("dapui").setup()
 require("dap-go").setup()
-require("nvim-dap-virtual-text").setup({})
-dapui.setup()
-
-dap.listeners.before.event_initialized["dapui_config"] = function()
-  dapui.open({})
-end
-
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close({})
-end
-
-dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close({})
-end
+require("nvim-dap-virtual-text").setup()
 
 dap.adapters.lldb = {
   type = "executable",
   command = "lldb-vscode",
   name = "lldb",
-  options = {
-    detached = true,
-  },
 }
 
 dap.configurations.zig = {
@@ -30,12 +14,8 @@ dap.configurations.zig = {
     name = "Launch",
     type = "lldb",
     request = "launch",
-    program = function()
-      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/zig-out/bin/", "file")
-    end,
+    program = "${workspaceFolder}/zig-out/bin/${workspaceFolderBasename}",
     cwd = "${workspaceFolder}",
-    stopOnEntry = false,
-    args = {},
   },
 }
 
@@ -44,28 +24,25 @@ dap.configurations.rust = {
     name = "Launch",
     type = "lldb",
     request = "launch",
-    program = function()
-      return vim.fn.input("Path to executable: ",
-        vim.fn.getcwd() .. "/target/debug/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t"), "file")
-    end,
+    program = "${workspaceFolder}/target/debug/${workspaceFolderBasename}",
     cwd = "${workspaceFolder}",
-    stopOnEntry = false,
-    args = {},
+    console = "internalConsole",
   },
 }
 
-local augroup = vim.api.nvim_create_augroup("dap", {})
-vim.api.nvim_create_autocmd("FileType", { group = augroup, pattern = "dap-repl", command = "set nobuflisted" })
-vim.api.nvim_create_autocmd("FileType",
-  { group = augroup, pattern = "dap-repl", command = "lua require('dap.ext.autocompl').attach()" })
-
+local dap_widgets = require "dap.ui.widgets";
 local map = vim.keymap.set
 map("n", "<space>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { desc = "[dap] toggle breakpoint" })
 map("n", "<space>dB", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
   { desc = "[dap] conditional breakpoint" })
-map("n", "<space>dr", "<cmd>lua require'dap'.repl.open()<CR>", { desc = "[dap] toggle REPL" })
-map("n", "<space>dtu", "<cmd>lua require'dapui'.toggle()<CR>", { desc = "[dap] toggle UI" })
-map("n", "<space>dtr", "<cmd>lua require'dap'.repl.toggle()<CR>", { desc = "[dap] toggle REPL" })
+map("n", "<space>dh", "<cmd>lua require'dap.ui.widgets'.hover()<CR>", { desc = "[dap] hover" })
+map("n", "<space>dr", "<cmd>lua require'dap'.repl.toggle()<CR>", { desc = "[dap] toggle REPL" })
+map("n", "<space>dut", "<cmd>lua require'dapui'.toggle()<CR>", { desc = "[dap] toggle dapui" })
+map("n", "<space>dus", function() dap_widgets.centered_float(dap_widgets.scopes) end, { desc = "[dap] ui scopes" })
+map("n", "<space>duf", function() dap_widgets.centered_float(dap_widgets.frames) end, { desc = "[dap] ui frames" })
+map("n", "<space>due", function() dap_widgets.centered_float(dap_widgets.expression) end,
+  { desc = "[dap] ui expressions" })
+map("n", "<space>dut", function() dap_widgets.centered_float(dap_widgets.threads) end, { desc = "[dap] ui threads" })
 map("n", "<F5>", "<cmd>lua require'dap'.continue()<CR>", { desc = "[dap] continue" })
 map("n", "<F10>", "<cmd>lua require'dap'.step_over()<CR>", { desc = "[dap] step over" })
 map("n", "<F11>", "<cmd>lua require'dap'.step_into()<CR>", { desc = "[dap] step into" })
