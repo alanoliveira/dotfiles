@@ -6,8 +6,8 @@ require("lsp_lines").setup()
 local lspcfg = require("lspconfig")
 
 vim.diagnostic.config({
-  virtual_text = true,
-  virtual_lines = false, -- disable lsp_lines by default
+  virtual_text = not require("alan.lsp_handlers").virtual_lines_enabled,
+  virtual_lines = require("alan.lsp_handlers").virtual_lines_enabled,
 })
 
 lspcfg.solargraph.setup {

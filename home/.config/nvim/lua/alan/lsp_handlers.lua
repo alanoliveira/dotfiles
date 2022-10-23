@@ -12,6 +12,8 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
+M.virtual_lines_enabled = false;
+
 M.on_attach = function(client, bufnr)
   local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "[lsp] goto definition" })
@@ -19,7 +21,6 @@ M.on_attach = function(client, bufnr)
   vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "[lsp] goto type definition" })
   vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, { buffer = bufnr, desc = "[lsp] rename" })
   vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "[lsp] code action" })
-  M.virtual_lines_enabled = true
   vim.keymap.set("n", "<space>cl", function()
     M.virtual_lines_enabled = not M.virtual_lines_enabled
     vim.diagnostic.config({ virtual_lines = M.virtual_lines_enabled, virtual_text = not M.virtual_lines_enabled })
