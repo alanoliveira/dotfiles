@@ -1,5 +1,6 @@
 export VI_MODE_SET_CURSOR=true
 export EDITOR=nvim
+export MANPAGER='nvim +Man!'
 
 source "$XDG_CONFIG_HOME/zsh/.zplugrc"
 source "$XDG_CONFIG_HOME/asdf-direnv/zshrc"
