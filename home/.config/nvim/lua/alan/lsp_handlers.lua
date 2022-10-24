@@ -15,7 +15,6 @@ M.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 M.virtual_lines_enabled = false;
 
 M.on_attach = function(client, bufnr)
-  local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "[lsp] goto definition" })
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "[lsp] goto declaration" })
   vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "[lsp] goto type definition" })
@@ -26,9 +25,7 @@ M.on_attach = function(client, bufnr)
     vim.diagnostic.config({ virtual_lines = M.virtual_lines_enabled, virtual_text = not M.virtual_lines_enabled })
   end, { desc = "Toggle lsp_lines" })
   vim.keymap.set("n", "<C-s>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "[lsp] signature" })
-  if filetype ~= "lua" then
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "[lsp] hover" })
-  end
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "[lsp] hover" })
   -- client.server_capabilities.documentFormattingProvider = false -- disable formatting
   lsp_format.on_attach(client)
 end

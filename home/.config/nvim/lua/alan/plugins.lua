@@ -21,8 +21,6 @@ return require("packer").startup(function(use)
   use "olimorris/neotest-rspec" -- rspec adapter
 
   -- language specifc stuffs
-  use "folke/lua-dev.nvim" -- for plugin dev
-  use "milisims/nvim-luaref" -- add api documentation to h:
   use "slim-template/vim-slim" -- slim
   use({ "ziglang/zig.vim", ft = "zig" }) -- zig
 

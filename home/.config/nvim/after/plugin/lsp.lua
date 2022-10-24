@@ -1,4 +1,3 @@
-require("neodev").setup({}) -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
 require("nvim-lsp-installer").setup({ ensure_installed = { "sumneko_lua" } })
 require "lsp_signature".setup({ floating_window = false, hint_prefix = "" })
 require("lsp-format").setup({})
