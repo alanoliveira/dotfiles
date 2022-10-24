@@ -1,2 +1,2 @@
 vim.opt_local.keywordprg = ":help"
-vim.opt_local.formatoptions = vim.opt_local.formatoptions - "o"
+vim.opt_local.formatoptions:remove("o")
