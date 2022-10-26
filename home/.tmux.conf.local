@@ -357,6 +357,9 @@ bind C-a send-prefix
 # allow select inner stuffs with i<x> in copy-mode-vi
 bind -T copy-mode-vi i command-prompt -1 -p "inner selection" "run 'cut -c3- ~/.tmux.conf.local | bash -s _vi_select_inner %%'"
 
+# improved move window
+bind . command-prompt -1 -p "(move-window)" "run 'cut -c3- ~/.tmux.conf.local | bash -s _smart_move_window %%'"
+
 set -g @fingers-key Space
 set -g @fingers-main-action :paste:
 set -g @fingers-shift-action :copy:
@@ -435,6 +438,18 @@ set -g @plugin 'Morantron/tmux-fingers'
 #   case $1 in
 #      w) tmux send -X select-word ;;
 #   esac
+# }
+#
+# _smart_move_window() {
+#   local last_window=$(tmux lsw -F "#{window_index}" | tail -n1)
+#   local dst=$(( $1 > $last_window ? $last_window : $1 ))
+#   tmux move-window -t 0
+#   tmux move-window -r
+#   for((i=2; i<=$dst; i++))
+#   do
+#     tmux move-window -t 0 -s $dst -d
+#     tmux move-window -r
+#   done
 # }
 #
 # "$@"
