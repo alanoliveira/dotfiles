@@ -30,6 +30,7 @@ vim.opt.inccommand = "split"
 vim.opt.list = true
 vim.opt.listchars = "tab:»-,trail:-,eol:↴,extends:»,precedes:«,nbsp:%,space:⋅"
 vim.opt.colorcolumn = "120"
+vim.opt.mouse = ""
 vim.g.mapleader = ","
 vim.g.direnv_auto = 0
 
