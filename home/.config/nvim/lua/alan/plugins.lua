@@ -55,6 +55,7 @@ return require("packer").startup(function(use)
   use "chentoast/marks.nvim" -- add marks in sign column
   use "goolord/alpha-nvim" -- startup screen
   use "folke/which-key.nvim" -- display a popup with key bindings
+  use "rcarriga/nvim-notify" -- notification manager
 
   -- treesitter
 
