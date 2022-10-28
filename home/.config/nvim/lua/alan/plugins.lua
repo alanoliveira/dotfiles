@@ -78,4 +78,9 @@ return require("packer").startup(function(use)
   use "saadparwaiz1/cmp_luasnip"
   use "ray-x/lsp_signature.nvim"
   use "onsails/lspkind.nvim" -- icons
+
+  local local_plugins = vim.fn.globpath("$HOME/Sources/nvim-plugins/", "*", false, true)
+  for _, local_plugin in pairs(local_plugins) do
+    use(local_plugin)
+  end
 end)
