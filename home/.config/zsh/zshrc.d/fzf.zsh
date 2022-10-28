@@ -13,7 +13,7 @@ function fzf-select-history-widget() {
   local RET=( $(\
     fc -rl 1 |\
     perl -ne 'print if !$seen{(/^\s*[0-9]+\**\s+(.*)/, $1)}++' |\
-    FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --tiebreak=index -n2..,.. --query=${(qqq)LBUFFER} +m"\
+    FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --tiebreak=index -n2.. --query=${(qqq)LBUFFER} +m"\
     $(__fzfcmd)\
   ) )
 
