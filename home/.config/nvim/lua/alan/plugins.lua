@@ -19,6 +19,8 @@ return require("packer").startup(function(use)
   use "nvim-neotest/neotest" -- interect with tests
   use "nvim-neotest/neotest-go" -- go adapter
   use "olimorris/neotest-rspec" -- rspec adapter
+  use "nvim-neotest/neotest-plenary" -- plenary(for lua plugins) adapter
+  use "rouge8/neotest-rust" -- rust adapter
 
   -- language specifc stuffs
   use "slim-template/vim-slim" -- slim
