@@ -2,13 +2,6 @@ local M = {}
 
 local lsp_format = require("lsp-format")
 
-M.setup = function()
-  vim.fn.sign_define("DiagnosticSignError", { texthl = "DiagnosticSignError", text = "", numhl = "" })
-  vim.fn.sign_define("DiagnosticSignWarning", { texthl = "DiagnosticSignWarning", text = "", numhl = "" })
-  vim.fn.sign_define("DiagnosticSignHint", { texthl = "DiagnosticSignHint", text = "", numhl = "" })
-  vim.fn.sign_define("DiagnosticSignInfo", { texthl = "DiagnosticSignInfo", text = "", numhl = "" })
-end
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
