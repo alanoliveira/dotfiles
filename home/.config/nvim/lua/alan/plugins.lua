@@ -12,7 +12,7 @@ return require("packer").startup(function(use)
   use "akinsho/toggleterm.nvim" -- terminal window manipulation
 
   -- snippets
-  use { "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" } -- snippets plugin
+  use { "L3MON4D3/LuaSnip" } -- snippets plugin
   use "rafamadriz/friendly-snippets" -- collection of snippets
 
   -- test
