@@ -19,10 +19,8 @@ esac
 
 alias ls=exa
 alias ll='ls -alF --icons'
-alias vi=vim
-alias vim=nvim
+alias e=$EDITOR
 alias lg=lazygit
-alias rofi=rofi -c ~/.config/rofi/config.rasi
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000

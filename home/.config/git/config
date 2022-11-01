@@ -2,9 +2,8 @@
 	rebase = false
 
 [alias]
-	st = status
-	co = checkout
-	di = diff
+	st = status -sb
+	lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --decorate=full
 
 [core]
 	editor = nvim
