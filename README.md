@@ -1,4 +1,4 @@
-# dotifiles
+# dotfiles
 My configs.
 
 ## General Dependencies
