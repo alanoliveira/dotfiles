@@ -4,11 +4,13 @@ bindkey '^t'    fzf-select-file-widget
 bindkey '^[c'   fzf-jump-to-z-dir-widget
 bindkey '^xb'   fzf-select-git-branch-widget
 bindkey '^xk'   fzf-kill-process-widget
-bindkey '^f'    autosuggest-accept
-bindkey '^y'    autosuggest-accept
-bindkey '^b'    util-open-on-browser
+bindkey '^e'    autosuggest-clear
+bindkey '^f'    forward-char
+bindkey '^b'    backward-char
 
-for b in $(bindkey | grep self-insert | cut -d'"' -f2)
-do
-  bindkey -r "$b"
-done
+# remove undesired self-inserts
+bindkey -r "^K"
+bindkey -r "^Y"
+bindkey -r "^Z"
+bindkey -r "^O"
+bindkey -r "^C"
