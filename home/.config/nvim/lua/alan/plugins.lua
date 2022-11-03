@@ -58,16 +58,16 @@ return require("packer").startup(function(use)
   use "goolord/alpha-nvim" -- startup screen
   use "folke/which-key.nvim" -- display a popup with key bindings
   use "rcarriga/nvim-notify" -- notification manager
+  use "williamboman/mason.nvim" -- manage lsp, dap, linters and formatters
+  use "williamboman/mason-lspconfig.nvim" -- lsp servers quick install
 
   -- treesitter
-
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" } -- treesitter
   use "p00f/nvim-ts-rainbow" -- colored brackets
   use "nvim-treesitter/playground" -- explore treesitter
 
   --LSP
   use "neovim/nvim-lspconfig" -- lsp quick configs
-  use "williamboman/nvim-lsp-installer" -- lsp servers quick install
   use "lukas-reineke/lsp-format.nvim" -- allow toggle lsp formatting
   use "jose-elias-alvarez/null-ls.nvim" -- generic language server
   use "Maan2003/lsp_lines.nvim" -- diagnostics as virtual lines
