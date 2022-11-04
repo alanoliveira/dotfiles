@@ -60,6 +60,7 @@ return require("packer").startup(function(use)
   use "rcarriga/nvim-notify" -- notification manager
   use "williamboman/mason.nvim" -- manage lsp, dap, linters and formatters
   use "williamboman/mason-lspconfig.nvim" -- lsp servers quick install
+  use "vimwiki/vimwiki" -- vim wiki
 
   -- treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" } -- treesitter
