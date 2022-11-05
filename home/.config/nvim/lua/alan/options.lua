@@ -33,7 +33,7 @@ vim.opt.colorcolumn = "120"
 vim.opt.mouse = ""
 vim.opt.wildmode = "longest:full"
 vim.opt.termguicolors = true
-vim.g.mapleader = ","
+vim.g.mapleader = " "
 
 vim.cmd([[
 colorscheme sonokai
