@@ -41,7 +41,6 @@ return require("packer").startup(function(use)
   use "tpope/vim-dadbod" -- run queries in command line
   use "kristijanhusak/vim-dadbod-ui" -- ui for dadbod
   use "kristijanhusak/vim-dadbod-completion" -- autocomplete for sql
-  use "pbogut/vim-dadbod-ssh" -- allows vim-dadbod connections through ssh
 
   -- themes
   use "sainnhe/gruvbox-material"
