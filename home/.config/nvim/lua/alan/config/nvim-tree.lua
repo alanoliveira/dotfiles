@@ -73,3 +73,5 @@ nvimtree.setup {
     show_on_dirs = true,
   },
 }
+
+vim.keymap.set("n", "<C-b>", "<cmd> NvimTreeToggle<CR>", { desc = "toggle nvim tree" })

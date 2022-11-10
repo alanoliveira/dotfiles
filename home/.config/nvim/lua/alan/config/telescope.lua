@@ -36,8 +36,6 @@ telescope.setup {
   },
 }
 
-telescope.load_extension("dap")
-
 local builtin = require("telescope.builtin")
 local map = vim.keymap.set
 map("n", "<leader>ft", builtin.find_files, { desc = "find_files" })
