@@ -34,6 +34,3 @@ vim.keymap.set({ "i", "s" }, "<C-n>", function()
 end, { silent = true })
 
 require("luasnip/loaders/from_vscode").lazy_load()
-for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/alan/snips/ft/*.lua", true)) do
-  loadfile(ft_path)()
-end

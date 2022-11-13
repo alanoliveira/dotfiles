@@ -11,7 +11,6 @@ vim.api.nvim_create_autocmd("DirChanged", { group = alan, command = "DirenvExpor
 vim.api.nvim_create_user_command("TrimTrailingWhiteSpaces", "%s/\\s\\+$//e", {})
 vim.api.nvim_create_user_command("ClearSearch", "let @/ = ''", {})
 vim.api.nvim_create_user_command("ToggleHLS", "if (&hls && v:hlsearch) | noh | else | set hls | endif", {})
-vim.api.nvim_create_user_command("RelSnips", "source ~/.config/nvim/after/plugin/luasnip.lua", {})
 vim.api.nvim_create_user_command("TermTab", "tabnew +term | set nobuflisted", {})
 
 vim.api.nvim_create_autocmd("BufWritePost", {

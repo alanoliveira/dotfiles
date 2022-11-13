@@ -16,7 +16,12 @@ return require("packer").startup(function(use)
   use { "akinsho/toggleterm.nvim", config = [[require("alan.config.toggleterm")]] } -- terminal window manipulation
 
   -- snippets
-  use { "L3MON4D3/LuaSnip", config = [[require("alan.config.luasnip")]] } -- snippets plugin
+  use { "L3MON4D3/LuaSnip",
+    config = [[require("alan.config.luasnip")]],
+    requires = {
+      "rafamadriz/friendly-snippets",
+    },
+  }
 
   -- test
   use { "nvim-neotest/neotest",
