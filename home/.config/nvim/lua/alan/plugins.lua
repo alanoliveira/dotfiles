@@ -89,7 +89,6 @@ return require("packer").startup(function(use)
     config = [[require("alan.config.treesitter")]],
     run = ":TSUpdate",
     requires = {
-      "p00f/nvim-ts-rainbow", -- colored brackets
       "nvim-treesitter/playground", -- explore treesitter
     },
   }
