@@ -28,7 +28,7 @@ vim.opt.spelllang = "en_us"
 vim.opt.spelloptions:append({ "camel" })
 vim.opt.inccommand = "split"
 vim.opt.list = true
-vim.opt.listchars = "tab:»-,trail:-,eol:↴,extends:»,precedes:«,nbsp:%,space:⋅"
+vim.opt.listchars = { tab = "»-", trail = "-", eol = "↴", extends = "»", precedes = "«", nbsp = "%", lead = "⋅" }
 vim.opt.colorcolumn = "120"
 vim.opt.mouse = ""
 vim.opt.wildmode = "longest:full"
