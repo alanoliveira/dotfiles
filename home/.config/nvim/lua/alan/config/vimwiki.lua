@@ -1,6 +1,6 @@
 vim.g.vimwiki_list = {
   {
-    path = "~/Dropbox/vimwiki/",
+    path = vim.env.VIMWIKI_PATH,
     syntax = "markdown",
     ext = ".md",
     diary_rel_path = "work/diary/",

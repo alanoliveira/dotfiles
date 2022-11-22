@@ -102,6 +102,7 @@
     taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
     # cpu_arch              # CPU architecture
     # time                  # current time
+    tmux_session            # tmux session name
     # =========================[ Line #2 ]=========================
     newline
     # ip                    # ip address and bandwidth usage for a specified network interface
@@ -1601,6 +1602,17 @@
   # User-defined prompt segments can be customized the same way as built-in segments.
   # typeset -g POWERLEVEL9K_EXAMPLE_FOREGROUND=208
   # typeset -g POWERLEVEL9K_EXAMPLE_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+
+  typeset -g POWERLEVEL9K_TMUX_SESSION_FOREGROUND=208
+  typeset -g POWERLEVEL9K_TMUX_SESSION_VISUAL_IDENTIFIER_EXPANSION=''
+  function prompt_tmux_session() {
+    if [[ ! -z $TMUX ]]; then
+      p10k segment -f $POWERLEVEL9K_TMUX_SESSION_FOREGROUND \
+        -i $POWERLEVEL9K_TMUX_SESSION_VISUAL_IDENTIFIER_EXPANSION \
+        -t $(tmux display-message -p '#{session_name}')
+    fi
+  }
 
   # Transient prompt works similarly to the builtin transient_rprompt option. It trims down prompt
   # when accepting a command line. Supported values:

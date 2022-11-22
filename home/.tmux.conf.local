@@ -20,21 +20,25 @@
 # new window retains current path, possible values are:
 #   - true
 #   - false (default)
+#   - disabled (do not modify new-window bindings)
 tmux_conf_new_window_retain_current_path=true
 
 # new pane retains current path, possible values are:
 #   - true (default)
 #   - false
+#   - disabled (do not modify split-window bindings)
 tmux_conf_new_pane_retain_current_path=true
 
-# new pane tries to reconnect ssh sessions (experimental), possible values are:
+# new pane tries to reconnect ssh sessions, possible values are:
 #   - true
 #   - false (default)
+#   - disabled (do not modify split-window bindings)
 tmux_conf_new_pane_reconnect_ssh=false
 
 # prompt for session name when creating a new session, possible values are:
 #   - true
 #   - false (default)
+#   - disabled (do not modify new-session bindings)
 tmux_conf_new_session_prompt=false
 
 
@@ -42,8 +46,13 @@ tmux_conf_new_session_prompt=false
 
 # RGB 24-bit colour support (tmux >= 2.2), possible values are:
 #  - true
-#  - false (default)
-tmux_conf_24b_colour=false
+#  - false
+#  - auto (default)
+#
+# automatic detection relies on the COLORTERM environment variable being defined
+# to 'truecolor' or '24bit' or '$ tput colors' answering '16777216'
+# see https://github.com/termstandard/colors
+tmux_conf_24b_colour=auto
 
 # default theme
 tmux_conf_theme_colour_1="#080808"    # dark gray
@@ -227,7 +236,7 @@ tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see
 #     - #{username}
 #     - #{username_ssh}
 tmux_conf_theme_status_left=" #S "
-tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized} , %R , %m月%d日 | #{username}#{root} | #{hostname} "
+tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized} , %R , %y-%m-%d | #{username}#{root} | #{hostname} "
 
 # status left style
 tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_6,$tmux_conf_theme_colour_7,$tmux_conf_theme_colour_8"
@@ -318,8 +327,9 @@ tmux_conf_theme_clock_style="24"
 # in copy mode, copying selection also copies to the OS clipboard
 #   - true
 #   - false (default)
+#   - disabled
 # on macOS, this requires installing reattach-to-user-namespace, see README.md
-# on Linux, this requires xsel or xclip
+# on Linux, this requires xsel, xclip or wl-copy
 tmux_conf_copy_to_os_clipboard=true
 
 
@@ -327,10 +337,17 @@ tmux_conf_copy_to_os_clipboard=true
 # this is the place to override or undo settings
 set-option -a terminal-overrides ",alacritty:RGB"
 
-set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
-set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
-
 set -sg repeat-time 300
+
+set -g @fingers-key Space
+set -g @fingers-main-action :paste:
+set -g @fingers-shift-action :copy:
+
+# Set pane title as directory if is running shell, otherwise show the current program
+set-option -g automatic-rename-format "#{?#{==:#{pane_current_command},#{b:SHELL}}, #{b:pane_current_path},#{?#{==:#{pane_current_command},nvim}, #{b:pane_current_path},#{pane_current_command}}}"
+set-option -g status-interval 2
+set-option -g status off
+set-option -g detach-on-destroy off
 
 # increase history size
 #set -g history-limit 10000
@@ -343,14 +360,24 @@ set -sg repeat-time 300
 #set -g status-keys vi
 #set -g mode-keys vi
 
-# copy-mode-vi binds
-
 # replace C-b by C-a instead of using both prefixes
-set -gu prefix2
+# set -gu prefix2
+# unbind C-a
+# unbind C-b
+# set -g prefix C-a
+# bind C-a send-prefix
+
+# Show status only when prefix is active
 unbind C-a
 unbind C-b
-set -g prefix C-a
-bind C-a send-prefix
+set -g prefix C-F7 # dummy, some commands doesn't works if both prefix are none
+set -g prefix2 none
+bind -n C-a set status on \;\
+  switch-client -T prefix \;\
+  run-shell -d 1 -b "while [ $(tmux display-message -p '##{client_prefix}') -eq 1 ]; do sleep 0.5; done; tmux set status off"
+
+# if you don't want Oh my tmux! to alter a binding, use #!important
+# bind v new-window -c #{pane_current_path} #!important
 
 # move status line to top
 #set -g status-position top
@@ -361,13 +388,14 @@ bind -T copy-mode-vi i command-prompt -1 -p "inner selection" "run 'cut -c3- ~/.
 # improved move window
 bind . command-prompt -1 -p "(move-window)" "run 'cut -c3- ~/.tmux.conf.local | bash -s _smart_move_window %%'"
 
-set -g @fingers-key Space
-set -g @fingers-main-action :paste:
-set -g @fingers-shift-action :copy:
+bind ^ switch-client -l
+bind Enter run-shell "tmux new-window -c $VIMWIKI_PATH -n 'Vimwiki' 'nvim -c VimwikiIndex'"
+bind g new-window -n "lazygit" lazygit
+bind f display-popup -E $XDG_CONFIG_HOME/scripts/tmux-sessionizer.sh
+bind / display-popup -E $XDG_CONFIG_HOME/scripts/tmux-cht.sh
+bind v copy-mode
 
-# Set pane title as directory if is running shell, otherwise show the current program
-set-option -g automatic-rename-format "#{?#{==:#{pane_current_command},#{b:SHELL}}, #{b:pane_current_path},#{?#{==:#{pane_current_command},nvim}, #{b:pane_current_path},#{pane_current_command}}}"
-set-option -g status-interval 2
+set-hook -g session-closed 'choose-tree -Z'
 
 # -- tpm -----------------------------------------------------------------------
 
@@ -411,6 +439,7 @@ tmux_conf_uninstall_plugins_on_reload=false
 set -g @plugin 'Morantron/tmux-fingers'
 #set -g @continuum-restore 'on'
 
+
 # -- custom variables ----------------------------------------------------------
 
 # to define a custom #{foo} variable, define a POSIX shell function between the
@@ -426,9 +455,9 @@ set -g @plugin 'Morantron/tmux-fingers'
 #
 # # /!\ do not "uncomment" the functions: the leading "# " characters are needed
 #
-# weather() {
-#   curl -m 1 wttr.in?format=3 2>/dev/null
-#   sleep 900 # sleep for 15 minutes, throttle network requests whatever the value of status-interval
+# weather() {                                         # see https://github.com/chubin/wttr.in#one-line-output
+#   curl -f -s -m 2 'wttr.in?format=3' || printf '\n' # /!\ make sure curl is installed
+#   sleep 900                                         # sleep for 15 minutes, throttle network requests whatever the value of status-interval
 # }
 #
 # online() {
