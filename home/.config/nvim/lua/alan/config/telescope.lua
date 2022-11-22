@@ -27,6 +27,9 @@ telescope.setup {
     oldfiles = {
       only_cwd = true,
     },
+    colorscheme = {
+      enable_preview = true,
+    },
     buffers = {
       attach_mappings = function(_, map)
         map("n", "d", actions.delete_buffer)
@@ -47,3 +50,12 @@ map("n", "<leader>fd", builtin.diagnostics, { desc = "diagnostics" })
 map("n", "<leader>fo", builtin.oldfiles, { desc = "old files" })
 map("n", "<leader>fh", builtin.help_tags, { desc = "help tags" })
 map("n", "<leader>ff", builtin.builtin, { desc = "all pickers" })
+
+if pcall(require, "harpoon") then
+  telescope.load_extension("harpoon")
+  map("n", "<leader>fj", telescope.extensions.harpoon.marks, { desc = "harpoon marks" })
+end
+
+if pcall(require, "dap") then
+  telescope.load_extension("dap")
+end

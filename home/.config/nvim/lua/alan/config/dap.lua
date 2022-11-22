@@ -30,11 +30,6 @@ dap.configurations.rust = {
   },
 }
 
-local ok, telescope = pcall(require, "telescope")
-if ok then
-  telescope.load_extension("dap")
-end
-
 local dap_widgets = require "dap.ui.widgets";
 local map = vim.keymap.set
 map("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { desc = "[dap] toggle breakpoint" })

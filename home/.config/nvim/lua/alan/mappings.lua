@@ -7,6 +7,10 @@ map({ "t", "n" }, "<C-l>", "<cmd> lua require('smart-splits').move_cursor_right(
 map("n", "<leader>/", "<cmd> ToggleHLS<CR>", { desc = "toggle hls" })
 map("s", "<C-w>", "<BS>i", { desc = "delete word" }) -- used to delete suggestions on luasnip
 
+
+map("n", "<C-N>", "<cmd> bn<cr>", { desc = "next buffer" })
+map("n", "<C-P>", "<cmd> bp<cr>", { desc = "previous buffer" })
+
 map("n", "<M-j>", "<esc>:m .+1<CR>", { desc = "move line down" })
 map("n", "<M-k>", "<esc>:m .-2<CR>", { desc = "move line up" })
 map("v", "<M-j>", ":m '>+1<CR>gv", { desc = "move selection down" })
