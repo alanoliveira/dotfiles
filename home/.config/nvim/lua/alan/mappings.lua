@@ -7,6 +7,8 @@ map({ "t", "n" }, "<C-l>", "<cmd> lua require('smart-splits').move_cursor_right(
 map("n", "<leader>/", "<cmd> ToggleHLS<CR>", { desc = "toggle hls" })
 map("s", "<C-w>", "<BS>i", { desc = "delete word" }) -- used to delete suggestions on luasnip
 
+map("x", "<leader>p", [["_dp]], { desc = "p w/o change \" reg" })
+map("x", "<leader>P", [["_dP]], { desc = "P w/o change \" reg" })
 
 map("n", "<C-n>", "<cmd> bn<cr>", { desc = "next buffer" })
 map("n", "<C-p>", "<cmd> bp<cr>", { desc = "previous buffer" })
