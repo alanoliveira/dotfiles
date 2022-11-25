@@ -54,7 +54,7 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+d exec dmenu_run
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -c ~/config/rofi/config.rasi -modi drun,run -show drun"
-bindsym $mod+d exec "rofi -c ~/config/rofi/config.rasi -modi drun,run -show drun"
+bindsym $mod+d exec rofi -show
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
@@ -125,10 +125,6 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws0 ""
 
-exec --no-startup-id alacritty
-exec --no-startup-id spotify-launcher
-for_window [class="Spotify"] move to workspace $ws0
-
 # switch to workspace
 bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Control+l workspace next
@@ -191,7 +187,11 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+for_window [class="^.*"] border pixel 1
+
 exec --no-startup-id fcitx
 exec --no-startup-id polybar
+exec --no-startup-id alacritty
+exec --no-startup-id spotify-launcher
+for_window [class="Spotify"] move to workspace $ws0
 
-for_window [class="^.*"] border pixel 1
