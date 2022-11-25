@@ -1,6 +1,5 @@
 local dap = require("dap")
 require("dapui").setup()
-require("dap-go").setup()
 require("nvim-dap-virtual-text").setup()
 
 dap.adapters.lldb = {
@@ -47,3 +46,8 @@ map("n", "<F5>", "<cmd>lua require'dap'.continue()<CR>", { desc = "[dap] continu
 map("n", "<F10>", "<cmd>lua require'dap'.step_over()<CR>", { desc = "[dap] step over" })
 map("n", "<F11>", "<cmd>lua require'dap'.step_into()<CR>", { desc = "[dap] step into" })
 map("n", "<F12>", "<cmd> require'dap'.step_out()<CR>", { desc = "[dap] step out" })
+
+local ok, telescope = pcall(require, "telescope")
+if ok then
+  telescope.load_extension("dap")
+end

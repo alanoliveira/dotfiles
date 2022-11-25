@@ -3,7 +3,8 @@ return require("packer").startup(function(use)
   use { "nvim-lua/plenary.nvim" } -- lua common functions
   use { "williamboman/mason.nvim" } -- manage lsp, dap, linters and formatters
   use { "williamboman/mason-lspconfig.nvim" } -- lsp servers quick install
-  use { "nvim-telescope/telescope.nvim", config = [[require("alan.config.telescope")]] } -- file explorer
+  use { "nvim-telescope/telescope.nvim", config = [[require("alan.config.telescope")]],
+    requires = "nvim-telescope/telescope-live-grep-args.nvim", } -- file explorer
   use { "nvim-lualine/lualine.nvim", config = [[require("alan.config.lualine")]] } -- status line
   use { "akinsho/bufferline.nvim", config = [[require("alan.config.bufferline")]] } -- buffer as tabs
   use { "vimwiki/vimwiki", setup = [[require("alan.config.vimwiki")]] } -- vim wiki
