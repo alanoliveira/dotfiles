@@ -20,6 +20,7 @@ esac
 alias ls=exa
 alias ll='ls -alF --icons'
 alias e=$EDITOR
+alias t=todo.sh
 alias lg=lazygit
 alias vimwiki='nvim -c VimwikiIndex'
 
