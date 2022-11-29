@@ -69,17 +69,7 @@ lspcfg.sumneko_lua.setup {
 }
 
 local null_ls = require("null-ls")
-local has_eslintrc = function(utils)
-  return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.yaml", ".eslintrc.yml", ".eslintrc.json" })
-end
-
 null_ls.setup({
   on_attach = require("alan.lsp_handlers").on_attach,
   capabilities = require("alan.lsp_handlers").capabilities,
-  sources = {
-    null_ls.builtins.code_actions.eslint_d.with({ condition = has_eslintrc }),
-    null_ls.builtins.formatting.eslint_d.with({ condition = has_eslintrc }),
-    null_ls.builtins.diagnostics.eslint_d.with({ condition = has_eslintrc }),
-    null_ls.builtins.formatting.prettier.with({ condition = function(utils) return not has_eslintrc(utils) end }),
-  },
 })
