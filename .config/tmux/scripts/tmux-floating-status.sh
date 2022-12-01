@@ -6,7 +6,7 @@ SC='#[fg=colour255,bg=colour27,bold]'
 SD='#[fg=colour255,bg=colour239,none]'
 
 
-LEFT=$(tmux display-message -p " #S ")
+LEFT=$(tmux display-message -p "[#S]")
 LEFT_SIZE=$(tmux display-message -p "#{w:#{l:$LEFT}}")
 
 RIGHT=" %Y-%m-%d %H:%M "
