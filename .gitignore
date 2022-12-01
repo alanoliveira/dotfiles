@@ -1,4 +1,2 @@
-fish/fish_variables
-nvim/plugin/
-.antigenrc.zwc
-.zcompdump
+.config/nvim/plugin/packer_compiled.lua
+.config/zsh/.zcompdump

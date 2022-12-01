@@ -13,4 +13,3 @@ My configs.
 - lazygit: https://github.com/jesseduffield/lazygit
 - alacritty: https://github.com/alacritty/alacritty
 - github-cli: https://cli.github.com/
-
