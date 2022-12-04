@@ -33,6 +33,11 @@ lspcfg.gopls.setup {
 lspcfg.rust_analyzer.setup {
   on_attach = require("alan.lsp_handlers").on_attach,
   capabilities = require("alan.lsp_handlers").capabilities,
+  settings = {
+    ["rust-analyzer"] = {
+      allTargets = true,
+    },
+  },
 }
 
 lspcfg.sumneko_lua.setup {
