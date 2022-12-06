@@ -35,6 +35,8 @@ vim.opt.wildmode = "longest:full"
 vim.opt.termguicolors = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
 vim.g.mapleader = " "
 
 vim.cmd([[

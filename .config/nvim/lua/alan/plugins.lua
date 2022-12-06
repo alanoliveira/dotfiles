@@ -8,6 +8,7 @@ return require("packer").startup(function(use)
   use { "nvim-lualine/lualine.nvim", config = [[require("alan.config.lualine")]] } -- status line
   use { "akinsho/bufferline.nvim", config = [[require("alan.config.bufferline")]] } -- buffer as tabs
   use { "vimwiki/vimwiki", setup = [[require("alan.config.vimwiki")]] } -- vim wiki
+  use { "mbbill/undotree" }
 
   use { "numToStr/Comment.nvim", config = [[require("alan.config.comment")]] } -- shortcut to comment/uncomment
   use { "windwp/nvim-autopairs", config = [[require("alan.config.autopairs")]] } -- auto close brackets, etc
