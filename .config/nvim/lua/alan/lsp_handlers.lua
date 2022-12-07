@@ -9,8 +9,8 @@ M.virtual_lines_enabled = false;
 
 M.on_attach = function(client, bufnr)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "[lsp] goto definition" })
-  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "[lsp] goto declaration" })
-  vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "[lsp] goto type definition" })
+  vim.keymap.set("n", "cD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "[lsp] goto declaration" })
+  vim.keymap.set("n", "cT", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "[lsp] goto type definition" })
   vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { buffer = bufnr, desc = "[lsp] rename" })
   vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "[lsp] code action" })
   vim.keymap.set("n", "<leader>cl", function()
