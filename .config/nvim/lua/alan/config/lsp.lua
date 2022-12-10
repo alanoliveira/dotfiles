@@ -1,7 +1,6 @@
 require("mason").setup({})
 require("mason-lspconfig").setup({ ensure_installed = { "sumneko_lua" } })
 require "lsp_signature".setup({ floating_window = false, hint_prefix = "" })
-require("lsp-format").setup({})
 require("lsp_lines").setup()
 local lspcfg = require("lspconfig")
 

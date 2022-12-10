@@ -96,7 +96,6 @@ return require("packer").startup(function(use)
     "neovim/nvim-lspconfig", -- lsp quick configs
     config = [[require("alan.config.lsp")]],
     requires = {
-      "lukas-reineke/lsp-format.nvim", -- allow toggle lsp formatting
       "jose-elias-alvarez/null-ls.nvim", -- generic language server
       "Maan2003/lsp_lines.nvim", -- diagnostics as virtual lines
       "onsails/lspkind.nvim", -- icons for lsp
