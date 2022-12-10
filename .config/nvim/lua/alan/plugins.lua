@@ -78,7 +78,7 @@ return require("packer").startup(function(use)
   use { "chentoast/marks.nvim", config = [[require("alan.config.marks")]] } -- add marks in sign column
   use { "goolord/alpha-nvim", config = [[require("alan.config.alpha")]] } -- startup screen
   use { "folke/which-key.nvim", config = [[require("alan.config.which-key")]] } -- display a popup with key bindings
-  use { "rcarriga/nvim-notify" } -- kawaii notifications
+  use { "rcarriga/nvim-notify", config = [[require("alan.config.nvim-notify")]] } -- kawaii notifications
 
   -- Treesitter
   use {

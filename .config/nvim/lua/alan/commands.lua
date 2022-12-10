@@ -16,5 +16,6 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   callback = function(args)
     vim.cmd("source " .. args.file)
     require("packer").compile()
+    vim.notify("packer compiled", "info")
   end,
 })
