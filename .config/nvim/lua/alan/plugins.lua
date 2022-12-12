@@ -76,7 +76,6 @@ return require("packer").startup(function(use)
   use { "kyazdani42/nvim-tree.lua", keys = "<C-b>", config = [[require("alan.config.nvim-tree")]] } -- side bar
   use { "kyazdani42/nvim-web-devicons" } -- icons mapping
   use { "chentoast/marks.nvim", config = [[require("alan.config.marks")]] } -- add marks in sign column
-  use { "goolord/alpha-nvim", config = [[require("alan.config.alpha")]] } -- startup screen
   use { "folke/which-key.nvim", config = [[require("alan.config.which-key")]] } -- display a popup with key bindings
   use { "rcarriga/nvim-notify", config = [[require("alan.config.nvim-notify")]] } -- kawaii notifications
 
