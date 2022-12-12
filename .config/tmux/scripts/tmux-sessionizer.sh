@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 PROJECTS_FILE=$HOME/.projects
-FZF_DEFAULT_OPTS="--history='$HOME/.cache/tmux_sessionizer'"
+FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --history='$HOME/.cache/tmux_sessionizer'"
 
 if [[ $# -eq 1 ]]; then
     selected=$1
