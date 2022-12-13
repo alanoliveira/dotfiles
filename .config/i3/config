@@ -8,6 +8,7 @@
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
+set $terminal alacritty
 
 set $mod Mod4
 
@@ -45,7 +46,11 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec $terminal
+
+# nnn
+for_window [title="NNN"] floating enable
+bindsym $mod+n exec "$terminal -t NNN -e nnn"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -191,7 +196,7 @@ for_window [class="^.*"] border pixel 1
 
 exec --no-startup-id fcitx
 exec --no-startup-id polybar
-exec --no-startup-id alacritty
+exec --no-startup-id $terminal
 exec --no-startup-id spotify-launcher
 for_window [class="Spotify"] move to workspace $ws0
 
