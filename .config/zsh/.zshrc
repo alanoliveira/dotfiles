@@ -3,6 +3,7 @@ export EDITOR=nvim
 export MANPAGER='nvim +Man!'
 export WORDCHARS=$WORDCHARS:s:/:
 export VIMWIKI_PATH=$HOME/Dropbox/vimwiki/
+export DOTFILES_PATH=$HOME/.dotfiles/
 
 source "$XDG_CONFIG_HOME/zsh/.zplugrc"
 source "$XDG_CONFIG_HOME/asdf-direnv/zshrc"
