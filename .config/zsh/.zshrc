@@ -18,7 +18,7 @@ case "$OSTYPE" in
 esac
 
 alias ls=exa
-alias ll='ls -alF --icons'
+alias ll='ls -alF --icons --sort=modified'
 alias e=$EDITOR
 alias t=todo.sh
 alias lg=lazygit
