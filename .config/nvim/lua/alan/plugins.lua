@@ -8,6 +8,8 @@ return require("packer").startup(function(use)
   use { "nvim-lualine/lualine.nvim", config = [[require("alan.config.lualine")]] } -- status line
   use { "akinsho/bufferline.nvim", config = [[require("alan.config.bufferline")]] } -- buffer as tabs
   use { "vimwiki/vimwiki", setup = [[require("alan.config.vimwiki")]] } -- vim wiki
+  use { "mbbill/undotree" }
+  use { "tpope/vim-fugitive" }
 
   use { "numToStr/Comment.nvim", config = [[require("alan.config.comment")]] } -- shortcut to comment/uncomment
   use { "windwp/nvim-autopairs", config = [[require("alan.config.autopairs")]] } -- auto close brackets, etc
@@ -74,9 +76,8 @@ return require("packer").startup(function(use)
   use { "kyazdani42/nvim-tree.lua", keys = "<C-b>", config = [[require("alan.config.nvim-tree")]] } -- side bar
   use { "kyazdani42/nvim-web-devicons" } -- icons mapping
   use { "chentoast/marks.nvim", config = [[require("alan.config.marks")]] } -- add marks in sign column
-  use { "goolord/alpha-nvim", config = [[require("alan.config.alpha")]] } -- startup screen
   use { "folke/which-key.nvim", config = [[require("alan.config.which-key")]] } -- display a popup with key bindings
-  use { "rcarriga/nvim-notify" } -- kawaii notifications
+  use { "rcarriga/nvim-notify", config = [[require("alan.config.nvim-notify")]] } -- kawaii notifications
 
   -- Treesitter
   use {
@@ -94,7 +95,6 @@ return require("packer").startup(function(use)
     "neovim/nvim-lspconfig", -- lsp quick configs
     config = [[require("alan.config.lsp")]],
     requires = {
-      "lukas-reineke/lsp-format.nvim", -- allow toggle lsp formatting
       "jose-elias-alvarez/null-ls.nvim", -- generic language server
       "Maan2003/lsp_lines.nvim", -- diagnostics as virtual lines
       "onsails/lspkind.nvim", -- icons for lsp

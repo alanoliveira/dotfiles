@@ -1,7 +1,6 @@
 require("mason").setup({})
 require("mason-lspconfig").setup({ ensure_installed = { "sumneko_lua" } })
 require "lsp_signature".setup({ floating_window = false, hint_prefix = "" })
-require("lsp-format").setup({})
 require("lsp_lines").setup()
 local lspcfg = require("lspconfig")
 
@@ -33,6 +32,11 @@ lspcfg.gopls.setup {
 lspcfg.rust_analyzer.setup {
   on_attach = require("alan.lsp_handlers").on_attach,
   capabilities = require("alan.lsp_handlers").capabilities,
+  settings = {
+    ["rust-analyzer"] = {
+      allTargets = true,
+    },
+  },
 }
 
 lspcfg.sumneko_lua.setup {
@@ -59,6 +63,7 @@ lspcfg.sumneko_lua.setup {
       workspace = {
         -- Make the server aware of Neovim runtime files
         library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {

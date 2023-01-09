@@ -3,6 +3,7 @@ export EDITOR=nvim
 export MANPAGER='nvim +Man!'
 export WORDCHARS=$WORDCHARS:s:/:
 export VIMWIKI_PATH=$HOME/Dropbox/vimwiki/
+export DOTFILES_PATH=$HOME/.dotfiles/
 
 source "$XDG_CONFIG_HOME/zsh/.zplugrc"
 source "$XDG_CONFIG_HOME/asdf-direnv/zshrc"
@@ -18,7 +19,7 @@ case "$OSTYPE" in
 esac
 
 alias ls=exa
-alias ll='ls -alF --icons'
+alias ll='ls -alF --icons --sort=modified'
 alias e=$EDITOR
 alias t=todo.sh
 alias lg=lazygit

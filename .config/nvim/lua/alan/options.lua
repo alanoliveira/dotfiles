@@ -1,5 +1,5 @@
 vim.language = "en_US.UTF-8"
-vim.opt.cmdheight = 1 -- I prefer 0 but for now it causes some side effects
+vim.opt.cmdheight = 0
 vim.opt.clipboard = "unnamedplus"
 vim.opt.showmode = false
 vim.opt.hidden = true
@@ -33,9 +33,15 @@ vim.opt.colorcolumn = "120"
 vim.opt.mouse = ""
 vim.opt.wildmode = "longest:full"
 vim.opt.termguicolors = true
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
 vim.g.mapleader = " "
 
 vim.cmd([[
+let g:sonokai_style = 'shusia'
+let g:sonokai_better_performance = 1
 colorscheme sonokai
 " highlight! SpellBad guisp=red cterm=undercurl
 highlight! link MatchWord MatchParen

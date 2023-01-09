@@ -2,11 +2,13 @@ if (( ! $+commands[fzf])); then
   return
 fi
 
+export FZF_TMUX=1
+export FZF_DEFAULT_OPTS="--bind=ctrl-f:accept"
+
 __fzfcmd() {
   [ -n "$TMUX_PANE" ] && { [ "${FZF_TMUX:-0}" != 0 ] || [ -n "$FZF_TMUX_OPTS" ]; } &&
     echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} -- " || echo "fzf"
 }
-FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --reverse"
 
 function fzf-select-history-widget() {
   # the extra parentheses is necessary to remove trailing blank spaces
