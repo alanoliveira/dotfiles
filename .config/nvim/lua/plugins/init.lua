@@ -7,7 +7,7 @@ return {
   { "tpope/vim-fugitive" },
   { "numToStr/Comment.nvim", config = true },
   { "kylechui/nvim-surround", config = true, module = "nvim-treesitter" },
-  { "andymass/vim-matchup" },
+  { "andymass/vim-matchup", init = function() vim.g.matchup_matchparen_offscreen = { method = "scrolloff" } end },
   { "folke/which-key.nvim", config = true },
   { "chentoast/marks.nvim", config = true },
   { "rcarriga/nvim-notify", config = function() vim.notify = require("notify") end },
