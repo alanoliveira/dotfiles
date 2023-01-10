@@ -1,5 +1,6 @@
 return {
   { "nvim-lua/plenary.nvim" },
+  { "nvim-tree/nvim-web-devicons" },
   { "williamboman/mason.nvim" },
   { "williamboman/mason-lspconfig.nvim" },
   { "mbbill/undotree" },
