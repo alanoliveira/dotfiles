@@ -1,5 +1,5 @@
 vim.language = "en_US.UTF-8"
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
 vim.opt.clipboard = "unnamedplus"
 vim.opt.showmode = false
 vim.opt.hidden = true
