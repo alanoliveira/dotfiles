@@ -21,6 +21,9 @@ return {
           i = {
             ["<C-j>"] = actions.select_default,
           },
+          n = {
+            ["T"] = actions.toggle_all,
+          },
         },
       },
       pickers = {
@@ -40,8 +43,17 @@ return {
           enable_preview = true,
         },
         buffers = {
+          sort_lastused = true,
           attach_mappings = function(_, map)
-            map("n", "d", actions.delete_buffer)
+            map("n", "x", actions.delete_buffer)
+
+            return true
+          end,
+        },
+        git_status = {
+          attach_mappings = function(_, map)
+            map("n", "<Tab>", actions.toggle_selection + actions.move_selection_worse)
+
             return true
           end,
         },
