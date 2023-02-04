@@ -4,3 +4,10 @@ function util-open-on-browser() {
   fi
 }
 zle -N util-open-on-browser
+
+# used to 'redraw' multi-line prompts (like p10k)
+function zle-hard-reset() {
+  zle push-line
+  zle accept-line
+}
+zle -N zle-hard-reset

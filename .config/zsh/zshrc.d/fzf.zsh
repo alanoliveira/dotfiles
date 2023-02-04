@@ -75,6 +75,6 @@ function fzf-jump-to-z-dir-widget() {
     cd $RET
     zle reset-prompt
   fi
-  zle reset-prompt
+  zle-hard-reset
 }
 zle -N fzf-jump-to-z-dir-widget

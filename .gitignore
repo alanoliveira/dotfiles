@@ -2,3 +2,4 @@
 .config/zsh/.zcompdump
 .config/nvim/lua/.luarc.json
 .config/zsh/.zcompcache/
+lazy-lock.json
