@@ -10,7 +10,7 @@ return {
   { "andymass/vim-matchup", init = function() vim.g.matchup_matchparen_offscreen = { method = "scrolloff" } end },
   { "folke/which-key.nvim", config = true },
   { "chentoast/marks.nvim", config = true },
-  { "rcarriga/nvim-notify", config = function() vim.notify = require("notify") end },
+  { "rcarriga/nvim-notify" },
 
   -- language specifc stuffs
   { "slim-template/vim-slim", ft = "slim" },
