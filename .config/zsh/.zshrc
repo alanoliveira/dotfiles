@@ -2,7 +2,7 @@ export VI_MODE_SET_CURSOR=true
 export EDITOR=nvim
 export MANPAGER='nvim +Man!'
 export WORDCHARS=$WORDCHARS:s:/:
-export VIMWIKI_PATH=$HOME/Dropbox/vimwiki/
+export PERSONAL_WIKI_PATH=$HOME/Dropbox/vimwiki/
 export DOTFILES_PATH=$HOME/.dotfiles/
 
 source "$XDG_CONFIG_HOME/zsh/.zplugrc"
@@ -23,7 +23,6 @@ alias ll='ls -alF --icons --sort=modified'
 alias e=$EDITOR
 alias t=todo.sh
 alias lg=lazygit
-alias vimwiki='nvim -c VimwikiIndex'
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
