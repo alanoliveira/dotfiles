@@ -8,7 +8,7 @@ return {
   },
   config = function()
     require("mason").setup({})
-    require("mason-lspconfig").setup({ ensure_installed = { "sumneko_lua" } })
+    require("mason-lspconfig").setup({ ensure_installed = { "lua_ls" } })
     require "lsp_signature".setup({ floating_window = false, hint_prefix = "" })
     require("lsp_lines").setup()
     local lspcfg = require("lspconfig")
@@ -48,7 +48,7 @@ return {
       },
     }
 
-    lspcfg.sumneko_lua.setup {
+    lspcfg.lua_ls.setup {
       on_attach = require("alan.lsp_handlers").on_attach,
       capabilities = require("alan.lsp_handlers").capabilities,
       settings = {
