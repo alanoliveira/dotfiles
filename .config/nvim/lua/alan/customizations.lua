@@ -22,6 +22,9 @@ end, vim.api.nvim_create_namespace("toggle_hlsearch"))
 
 local map = vim.keymap.set
 
+map({ "i" }, "<C-s>", function()
+  require "telescope.builtin".symbols { sources = { "nerd", "emoji" } }
+end, { desc = "symbol" })
 map({ "t", "n" }, "<C-h>", "<cmd> lua require('smart-splits').move_cursor_left()<CR>", { desc = "move to left split" })
 map({ "t", "n" }, "<C-j>", "<cmd> lua require('smart-splits').move_cursor_down()<CR>", { desc = "move to down split" })
 map({ "t", "n" }, "<C-k>", "<cmd> lua require('smart-splits').move_cursor_up()<CR>", { desc = "mode to up split" })
