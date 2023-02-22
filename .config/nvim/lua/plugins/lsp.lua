@@ -82,6 +82,11 @@ return {
       },
     }
 
+    lspcfg.clangd.setup {
+      on_attach = require("alan.lsp_handlers").on_attach,
+      capabilities = require("alan.lsp_handlers").capabilities,
+    }
+
     local null_ls = require("null-ls")
     null_ls.setup({
       on_attach = require("alan.lsp_handlers").on_attach,
