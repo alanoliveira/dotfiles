@@ -59,6 +59,7 @@ return {
               quote_style = "double",
               table_separator_style = "comma",
               trailing_table_separator = "smart",
+              align_array_table = "false",
             },
           },
           runtime = {
