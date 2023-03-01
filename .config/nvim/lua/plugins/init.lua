@@ -1,8 +1,7 @@
 return {
   { "nvim-lua/plenary.nvim" },
   { "nvim-tree/nvim-web-devicons" },
-  { "williamboman/mason.nvim" },
-  { "williamboman/mason-lspconfig.nvim" },
+  { "williamboman/mason.nvim", config = true },
   { "mbbill/undotree" },
   { "tpope/vim-fugitive" },
   { "numToStr/Comment.nvim", config = true },

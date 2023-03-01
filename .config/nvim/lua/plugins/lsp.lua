@@ -2,15 +2,22 @@
 return {
   "neovim/nvim-lspconfig", -- lsp quick configs
   dependencies = {
-    "jose-elias-alvarez/null-ls.nvim", -- generic language server
-    "Maan2003/lsp_lines.nvim", -- diagnostics as virtual lines
-    "onsails/lspkind.nvim", -- icons for lsp
+    { "jose-elias-alvarez/null-ls.nvim" }, -- generic language server
+    { "onsails/lspkind.nvim" }, -- icons for lsp
+    { "Maan2003/lsp_lines.nvim", config = true }, -- diagnostics as virtual lines
+    { "williamboman/mason-lspconfig.nvim" }, -- lsp default configs
+    { "folke/neodev.nvim", config = true }, -- makes lsp works with native nvim functions
+    { "j-hui/fidget.nvim" }, -- show lsp loading status
   },
   config = function()
-    require("mason").setup({})
+    require("fidget").setup({
+      text = { spinner = "dots" },
+      fmt = { task = false },
+      timer = { fidget_decay = 2000, task_decay = 500 },
+    })
     require("mason-lspconfig").setup({ ensure_installed = { "lua_ls" } })
-    require "lsp_signature".setup({ floating_window = false, hint_prefix = "" })
-    require("lsp_lines").setup()
+    require("lsp_signature").setup({ floating_window = false, hint_prefix = "" })
+
     local lspcfg = require("lspconfig")
 
     vim.fn.sign_define("DiagnosticSignError", { texthl = "DiagnosticSignError", text = "", numhl = "" })
@@ -61,23 +68,6 @@ return {
               trailing_table_separator = "smart",
               align_array_table = "false",
             },
-          },
-          runtime = {
-            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-            version = "LuaJIT",
-          },
-          diagnostics = {
-            -- Get the language server to recognize the `vim` global
-            globals = { "vim" },
-          },
-          workspace = {
-            -- Make the server aware of Neovim runtime files
-            library = vim.api.nvim_get_runtime_file("", true),
-            checkThirdParty = false,
-          },
-          -- Do not send telemetry data containing a randomized but unique identifier
-          telemetry = {
-            enable = false,
           },
         },
       },
