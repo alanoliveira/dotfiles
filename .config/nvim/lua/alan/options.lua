@@ -29,7 +29,7 @@ vim.opt.spelloptions:append({ "camel" })
 vim.opt.inccommand = "split"
 vim.opt.list = true
 vim.opt.listchars = { tab = "»-", trail = "-", eol = "↴", extends = "»", precedes = "«", nbsp = "%", lead = "⋅" }
-vim.opt.colorcolumn = "120"
+vim.opt.colorcolumn = "100"
 vim.opt.mouse = ""
 vim.opt.wildmode = "longest:full"
 vim.opt.termguicolors = true
