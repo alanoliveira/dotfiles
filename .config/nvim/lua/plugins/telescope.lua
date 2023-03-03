@@ -1,6 +1,9 @@
 return {
   "nvim-telescope/telescope.nvim",
-  dependencies = { "nvim-telescope/telescope-live-grep-args.nvim" },
+  dependencies = {
+    "nvim-telescope/telescope-live-grep-args.nvim",
+    "nvim-telescope/telescope-symbols.nvim",
+  },
   config = function()
     local telescope = require("telescope")
     local actions = require("telescope.actions")
@@ -56,6 +59,9 @@ return {
 
             return true
           end,
+        },
+        symbols = {
+          sources = { "nerd", "math", "latex", "kaomoji", "julia", "gitmoji", "emoji" },
         },
       },
       extensions = {
