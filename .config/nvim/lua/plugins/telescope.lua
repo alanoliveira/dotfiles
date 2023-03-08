@@ -48,7 +48,8 @@ return {
         buffers = {
           sort_lastused = true,
           attach_mappings = function(_, map)
-            map("n", "x", actions.delete_buffer)
+            map("n", "d", actions.delete_buffer)
+            map("i", "<C-d>", actions.delete_buffer)
 
             return true
           end,
