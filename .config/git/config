@@ -25,3 +25,6 @@
 
 [difftool "nvimdiff"]
   cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[user]
+	email = alan.oliveira89@gmail.com
+	name = Alan Oliveira
