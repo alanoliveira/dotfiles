@@ -4,7 +4,6 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 
 zinit snippet OMZP::vi-mode
-zinit snippet OMZP::z
 zinit snippet OMZP::ssh-agent
 zinit snippet OMZP::asdf
 
