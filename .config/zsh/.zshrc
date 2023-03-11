@@ -5,8 +5,7 @@ export WORDCHARS=$WORDCHARS:s:/:
 export PERSONAL_WIKI_PATH=$HOME/Dropbox/vimwiki/
 export DOTFILES_PATH=$HOME/.dotfiles/
 
-source "$XDG_CONFIG_HOME/zsh/.zplugrc"
-source "$XDG_CONFIG_HOME/asdf-direnv/zshrc"
+source "$XDG_CONFIG_HOME/zsh/plugins.zsh"
 
 typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
 
