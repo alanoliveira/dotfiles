@@ -48,6 +48,7 @@ return {
     lspcfg.rust_analyzer.setup {
       on_attach = require("alan.lsp_handlers").on_attach,
       capabilities = require("alan.lsp_handlers").capabilities,
+      cmd = {"rustup", "run", "stable", "rust-analyzer"},
       settings = {
         ["rust-analyzer"] = {
           allTargets = true,

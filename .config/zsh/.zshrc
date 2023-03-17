@@ -10,6 +10,7 @@ export MANPAGER='nvim +Man!'
 export WORDCHARS=$WORDCHARS:s:/:
 export PERSONAL_WIKI_PATH=$HOME/Dropbox/vimwiki/
 export DOTFILES_PATH=$HOME/.dotfiles/
+export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH
 
 source "$XDG_CONFIG_HOME/zsh/plugins.zsh"
 
