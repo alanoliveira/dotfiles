@@ -2,13 +2,12 @@ return {
   "mfussenegger/nvim-dap",
   keys = "<leader>d",
   dependencies = {
-    "nvim-telescope/telescope-dap.nvim", -- telescope integration
-    "theHamsta/nvim-dap-virtual-text", -- show current variable values
-    "rcarriga/nvim-dap-ui", -- debugger ui
+    { "nvim-telescope/telescope-dap.nvim" }, -- telescope integration
+    { "theHamsta/nvim-dap-virtual-text", config = true }, -- show current variable values
+    { "rcarriga/nvim-dap-ui", config = true }, -- debugger ui
   },
   config = function()
     local dap = require("dap")
-    require("nvim-dap-virtual-text").setup()
 
     dap.adapters.codelldb = {
       type = "server",
@@ -64,8 +63,11 @@ return {
     map("n", "<leader>due", function() dap_widgets.centered_float(dap_widgets.expression) end,
       { desc = "[dap] ui expressions" })
     map("n", "<leader>dut", function() dap_widgets.centered_float(dap_widgets.threads) end, { desc = "[dap] ui threads" })
-    map("n", "<leader>duu", "<cmd>lua require'dapui'.toggle()<CR>", { desc = "[dap] dapui toggle" })
-    map("n", "<leader>dc", function() dap.continue(); dap.repl.open() end, { desc = "[dap] continue" })
+    map("n", "<leader>duu", require("dapui").toggle, { desc = "[dap] dapui toggle" })
+    map("n", "<leader>dc", function()
+      dap.continue();
+      dap.repl.open()
+    end, { desc = "[dap] continue" })
 
     local ok, telescope = pcall(require, "telescope")
     if ok then

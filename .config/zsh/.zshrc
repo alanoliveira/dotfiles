@@ -1,14 +1,18 @@
+typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
+setopt appendhistory
+
+export HISTFILE=~/.zsh_history
+export HISTSIZE=10000
+export SAVEHIST=10000
 export VI_MODE_SET_CURSOR=true
 export EDITOR=nvim
 export MANPAGER='nvim +Man!'
 export WORDCHARS=$WORDCHARS:s:/:
 export PERSONAL_WIKI_PATH=$HOME/Dropbox/vimwiki/
 export DOTFILES_PATH=$HOME/.dotfiles/
+export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH
 
-source "$XDG_CONFIG_HOME/zsh/.zplugrc"
-source "$XDG_CONFIG_HOME/asdf-direnv/zshrc"
-
-typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
+source "$XDG_CONFIG_HOME/zsh/plugins.zsh"
 
 case "$OSTYPE" in
     darwin*)
@@ -18,16 +22,16 @@ case "$OSTYPE" in
         ;;
 esac
 
-alias ls=exa
-alias ll='ls -alF --icons --sort=modified'
 alias e=$EDITOR
+alias vim=nvim
+alias ls='exa --icons'
+alias cat='bat --style=auto'
+alias ps=procs
+alias ll='ls -alF --sort=modified'
 alias t=todo.sh
 alias lg=lazygit
-
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-setopt appendhistory
+alias docker=podman
+eval "$(zoxide init zsh)"
 
 for file in $XDG_CONFIG_HOME/zsh/zshrc.d/**/*(.); do
     source "$file"
