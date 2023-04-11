@@ -27,6 +27,7 @@ return {
             path = 1,
           },
         },
+        lualine_x = { "%S", "encoding", "fileformat", "filetype" },
       },
     })
   end,
