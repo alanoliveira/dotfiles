@@ -3,7 +3,6 @@ return {
   { "nvim-tree/nvim-web-devicons" },
   { "williamboman/mason.nvim", config = true },
   { "mbbill/undotree" },
-  { "tpope/vim-fugitive" },
   { "numToStr/Comment.nvim", config = true },
   { "kylechui/nvim-surround", config = true, module = "nvim-treesitter" },
   { "andymass/vim-matchup", init = function() vim.g.matchup_matchparen_offscreen = { method = "scrolloff" } end },

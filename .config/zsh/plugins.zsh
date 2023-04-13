@@ -7,6 +7,9 @@ zinit snippet OMZP::vi-mode
 zinit snippet OMZP::ssh-agent
 zinit snippet OMZP::asdf
 
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=()
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=()
+
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light kutsan/zsh-system-clipboard

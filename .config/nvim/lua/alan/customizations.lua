@@ -22,6 +22,8 @@ end, vim.api.nvim_create_namespace("toggle_hlsearch"))
 
 local map = vim.keymap.set
 
+map("i", "<C-f>", "<right>", { desc = "move left" })
+map("i", "<C-b>", "<left>", { desc = "move right" })
 map({ "i" }, "<C-s>", function()
   require "telescope.builtin".symbols { sources = { "nerd", "emoji" } }
 end, { desc = "symbol" })
@@ -33,8 +35,3 @@ map("s", "<C-w>", "<BS>i", { desc = "delete word" }) -- used to delete suggestio
 
 map("x", "<leader>p", [["_dp]], { desc = "p w/o change \" reg" })
 map("x", "<leader>P", [["_dP]], { desc = "P w/o change \" reg" })
-
-map("n", "<M-j>", "<esc>:m .+1<CR>", { desc = "move line down" })
-map("n", "<M-k>", "<esc>:m .-2<CR>", { desc = "move line up" })
-map("v", "<M-j>", ":m '>+1<CR>gv", { desc = "move selection down" })
-map("v", "<M-k>", ":m '<-2<CR>gv", { desc = "move selection up" })

@@ -7,10 +7,10 @@ bindkey '^xk'   fzf-kill-process-widget
 bindkey '^e'    autosuggest-clear
 bindkey '^f'    forward-char
 bindkey '^b'    backward-char
+bindkey '^y'    autosuggest-accept
 
 # remove undesired self-inserts
 bindkey -r "^K"
-bindkey -r "^Y"
 bindkey -r "^Z"
 bindkey -r "^O"
 bindkey -r "^C"
