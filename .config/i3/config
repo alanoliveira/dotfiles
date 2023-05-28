@@ -52,6 +52,9 @@ bindsym $mod+Return exec $terminal
 for_window [title="NNN"] floating enable
 bindsym $mod+n exec "$terminal -t NNN -e nnn"
 
+# tridactyl
+for_window [title="tridactyl_nvim"] floating enable
+
 # kill focused window
 bindsym $mod+Shift+q kill
 

@@ -9,6 +9,7 @@ return {
   { "folke/which-key.nvim", config = true },
   { "chentoast/marks.nvim", config = true },
   { "rcarriga/nvim-notify" },
+  { "tridactyl/vim-tridactyl" },
 
   -- language specifc stuffs
   { "slim-template/vim-slim", ft = "slim" },
