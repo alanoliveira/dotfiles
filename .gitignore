@@ -1,3 +1,4 @@
+.config/alacritty/theme.yml
 .config/nvim/plugin/packer_compiled.lua
 .config/zsh/.zcompdump
 .config/zsh/.zcompcache/

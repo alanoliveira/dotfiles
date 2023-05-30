@@ -9,6 +9,25 @@ vim.api.nvim_create_user_command("TrimTrailingWhiteSpaces", "%s/\\s\\+$//e", {})
 vim.api.nvim_create_user_command("ClearSearch", "let @/ = ''", {})
 vim.api.nvim_create_user_command("TermTab", "tabnew +term | set nobuflisted", {})
 
+local set_colorscheme = function()
+  local is_night = os.execute('[[ $(tmux display -p "#{DARK_THEME}") == 1 ]]')
+
+  if is_night ~= 0 then
+    vim.cmd("colorscheme dayfox")
+  else
+    vim.cmd("colorscheme nightfox")
+  end
+end
+set_colorscheme()
+
+vim.api.nvim_create_autocmd("Signal", {
+  group = alan,
+  pattern = { "SIGUSR1" },
+  callback = function()
+    vim.schedule(set_colorscheme)
+  end,
+})
+
 vim.on_key(function(char)
   if vim.fn.mode() == "n" then
     local keys = { "n", "N", "*", "#", "<CR>", "/", "?" }

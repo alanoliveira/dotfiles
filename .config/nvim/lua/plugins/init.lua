@@ -14,4 +14,7 @@ return {
   -- language specifc stuffs
   { "slim-template/vim-slim", ft = "slim" },
   { "ziglang/zig.vim", ft = "zig" },
+
+  -- colorscheme
+  { "EdenEast/nightfox.nvim" },
 }
