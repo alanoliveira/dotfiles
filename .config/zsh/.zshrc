@@ -31,7 +31,9 @@ alias ll='ls -alF --sort=modified'
 alias t=todo.sh
 alias lg=lazygit
 alias docker=podman
+
 eval "$(zoxide init zsh)"
+eval "$(direnv hook zsh)"
 
 for file in $XDG_CONFIG_HOME/zsh/zshrc.d/**/*(.); do
     source "$file"
