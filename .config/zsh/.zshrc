@@ -11,8 +11,12 @@ export WORDCHARS=$WORDCHARS:s:/:
 export PERSONAL_WIKI_PATH=$HOME/Dropbox/vimwiki/
 export DOTFILES_PATH=$HOME/.dotfiles/
 export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH
+export PERSONAL_SETTINGS=$HOME/.personal_settings.toml
+export DARK_MODE=$(toml get --raw $PERSONAL_SETTINGS settings.darkmode)
 
 source "$XDG_CONFIG_HOME/zsh/plugins.zsh"
+
+[[ ! -f $PERSONAL_SETTINGS ]] && touch $PERSONAL_SETTINGS
 
 case "$OSTYPE" in
     darwin*)

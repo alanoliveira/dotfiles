@@ -10,7 +10,7 @@ vim.api.nvim_create_user_command("ClearSearch", "let @/ = ''", {})
 vim.api.nvim_create_user_command("TermTab", "tabnew +term | set nobuflisted", {})
 
 local set_colorscheme = function()
-  local is_night = os.execute('[[ $(tmux display -p "#{DARK_THEME}") == 1 ]]')
+  local is_night = os.execute('[[ $(toml get --raw $PERSONAL_SETTINGS settings.darkmode) == 1 ]]')
 
   if is_night ~= 0 then
     vim.cmd("colorscheme dayfox")
