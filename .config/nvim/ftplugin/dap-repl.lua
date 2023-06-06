@@ -15,4 +15,4 @@ map("i", "<C-J>", "<Cr>", { buffer = 0, silent = true })
 map("i", "<C-W>", "<C-S-W>", { buffer = 0, silent = true })
 map("i", "<C-C>", "<cmd>norm ddI<CR>", { buffer = 0, silent = true })
 
-require("dap.ext.autocompl").attach()
+-- require("dap.ext.autocompl").attach()

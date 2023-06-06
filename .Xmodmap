@@ -1,0 +1,5 @@
+keycode 49 = BackSpace
+keycode 51 = Escape
+keycode 22 = backslash bar
+keycode 9 = grave asciitilde
+keycode 134 = F13

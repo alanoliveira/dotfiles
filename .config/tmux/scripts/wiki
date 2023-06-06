@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+CURRENT_WINDOW=$(tmux list-windows -f "#{window_active}" -F "#S:#I")
+
+WINDOW_NAME="Wiki"
+tmux new-window -dS -c "$CLOUD_DIR/wiki" -n $WINDOW_NAME -t main 'nvim -c "Telescope find_files"'
+tmux switch-client -t "main:$WINDOW_NAME"
+tmux set-hook -w -t "main:$WINDOW_NAME" window-unlinked[0] "switch-client -t $CURRENT_WINDOW"
+
+exit 0

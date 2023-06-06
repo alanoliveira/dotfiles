@@ -3,23 +3,37 @@ sanitize tridactyllocal tridactylsync
 " General Settings
 set smoothscroll true
 set hintdelay 100
-set editorcmd alacritty --option window.opacity=0.5 -t tridactyl_nvim -e nvim --clean
+set editorcmd alacritty --option window.opacity=0.9 -t tridactyl-nvim -e nvim -u "$HOME/.config/tridactyl/vimrc"
 set searchengine google
 set newtab about:blank
 set allowautofocus false
 set completions.Bmark.autoselect false
+command jse js function $all(q, root=document) { return Array.from(root.querySelectorAll(q)) };
+
+## video related commands
+command video_with jse let video; if (document.activeElement.nodeName == 'VIDEO') video = document.activeElement; else video = $all('video').find(v => !v.paused); if (!video) video = $all('video').at(0);
+bind --mode=video <space> video_with video.paused ? video.play() : video.pause()
+bind gv mode video
+bind --mode=video V mode normal
+bind --mode=video <esc> mode normal
 
 " Disable all searchurls
 jsb Object.keys(tri.config.get("searchurls")).reduce((prev, u) => prev.catch(()=>{}).then(_ => tri.excmds.setnull("searchurls." + u)), Promise.resolve())
 " Add our own
 set searchurls.g    https://www.google.com/search?q=%s
-set searchurls.y    https://www.youtube.com/results?search_query=%s
 set searchurls.w    https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
+set searchurls.gh   https://github.com/search?q=%s
+set searchurls.yt   https://www.youtube.com/results?search_query=%s
 set searchurls.aur  https://aur.archlinux.org/packages?O=0&K=%s
 set searchurls.enja https://www.deepl.com/en/translator#en/ja/%s
 set searchurls.jaen https://www.deepl.com/en/translator#ja/en/%s
 set searchurls.enpt https://www.deepl.com/en/translator#en/pt/%s
 set searchurls.pten https://www.deepl.com/en/translator#pt/en/%s
+set searchurls.amz  https://www.amazon.co.jp/s?k=%s
+
+alias editor_xclip composite js document.activeElement.addEventListener('focusin', e => { if(e.target.classList.contains('TridactylEditing')) tri.native.run('xclip -sel clip -o').then(c => tri.excmds.yank(c.content.slice(0, -1))) }, {'once': true}) | editor
+bind --mode=insert <C-i> editor_xclip
+bind --mode=input <C-i> editor_xclip
 
 guiset_quiet hoverlink right
 
@@ -27,13 +41,6 @@ guiset_quiet hoverlink right
 unbind d
 unbind D
 unbind <C-f>
-
-bindurl youtu((\.be)|(be\.com)) f hint -J
-bindurl google(\.[a-zA-Z0-9]+){1,2}/search f hint -Jc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
-bindurl google(\.[a-zA-Z0-9]+){1,2}/search F hint -Jbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
-bindurl google(\.[a-zA-Z0-9]+){1,2}/search gF hint -Jqbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
-bindurl twitter\.com gi focusinput -n 2
-bindurl deepl\.com <Tab> js document.getElementsByClassName("lmt__language_container_switch")[0].click()
 
 quickmark g https://github.com/
 quickmark ? https://chat.openai.com/
@@ -48,7 +55,6 @@ bind <A-h> tabprev
 bind x tabclose
 bind X tabclose tabprev; tabclose #
 bind <C-t> tabopen
-bind <Space>f fillcmdline goto
 
 bind --mode=ex     <C-k> ex.prev_completion
 bind --mode=ex     <C-j> ex.next_completion
@@ -79,7 +85,33 @@ bind --mode=ex     <C-h> text.delete_backward_char
 bind --mode=insert <C-h> text.delete_backward_char
 bind --mode=input  <C-h> text.delete_backward_char
 
-autocmd DocStart mail.google.com mode ignore
+bindurl youtu((\.be)|(be\.com)) f hint -J
+bindurl google(\.[a-zA-Z0-9]+){1,2}/search f hint -Jc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
+bindurl google(\.[a-zA-Z0-9]+){1,2}/search F hint -Jbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
+bindurl google(\.[a-zA-Z0-9]+){1,2}/search gF hint -Jqbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
+bindurl deepl\.com <Tab> js document.getElementsByClassName("lmt__language_container_switch")[0].click()
+unbindurl github\.com/.*/.*/blob/ --mode=insert <C-i>
+bindurl github\.com/.*/.*/blob/ <C-i> js -r editor_gh_blob.js
+bindurl github\.com/.*/.*/blob/ --mode=insert <C-i> js -r editor_gh_blob.js
+
+seturl play.rust-lang.org allowautofocus true
+
+seturl ^https?://www.keybr.com superignore true
+seturl ^https?://monkeytype.com superignore true
+blacklistadd play.rust-lang.org
+blacklistadd mail.google.com
+blacklistadd maps.google.com
+
+" disable safebrowsing
+setpref browser.safebrowsing.blockedURIs.enabled false
+setpref browser.safebrowsing.downloads.remote.enabled false
+setpref browser.safebrowsing.malware.enabled false
+setpref browser.safebrowsing.phishing.enabled false
+
+setpref extensions.pocket.enabled false
+setpref browser.startup.page 1
+setpref browser.toolbars.bookmarks.visibility never
+setpref browser.search.region "BR"
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: set filetype=tridactyl

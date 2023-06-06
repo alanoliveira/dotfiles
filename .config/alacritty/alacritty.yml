@@ -897,5 +897,5 @@ key_bindings:
   # Highlight window damage information.
   #highlight_damage: false
   
-import: 
-  - ~/.config/alacritty/theme.yml
+import:
+  - ~/.config/alacritty/themes/nightfox/nightfox.yml

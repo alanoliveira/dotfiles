@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# disable firefox reserved keys (like ctrl+q, ctrl+w, ctrl+t, ctrl+n, ...)
+# https://github.com/glacambre/firefox-patches/issues/1
+sed -i 's/reserved="true"/               /g' /usr/lib/firefox/browser/omni.ja
+find ~/.cache/mozilla/firefox -type d -name startupCache | xargs rm -rf
