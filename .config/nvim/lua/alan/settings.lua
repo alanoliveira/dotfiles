@@ -82,4 +82,4 @@ vim.diagnostic.config({ virtual_text = true, severity_sort = true })
 local map = vim.keymap.set
 map("x", "<leader>p", [["_dp]], { desc = "p using _" })
 map("x", "<leader>P", [["_dP]], { desc = "P using _" })
-map("i", "<C-g>u", "<Esc>g~iwgi", { desc = "Change case of word" })
+map("i", "<A-g>", "<Esc>g~iwgi", { desc = "Change case of word" })

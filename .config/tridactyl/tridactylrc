@@ -1,9 +1,13 @@
 sanitize tridactyllocal tridactylsync
 
+" Gui settings
+guiset_quiet hoverlink none
+guiset_quiet statuspanel none
+
 " General Settings
 set smoothscroll true
 set hintdelay 100
-set editorcmd alacritty --option window.opacity=0.9 -t tridactyl-nvim -e nvim -u "$HOME/.config/tridactyl/vimrc"
+set editorcmd tobuterm -o 0.9 -t tridactyl-nvim -e nvim -u "$HOME/.config/tridactyl/vimrc"
 set searchengine google
 set newtab about:blank
 set allowautofocus false
@@ -112,6 +116,7 @@ setpref extensions.pocket.enabled false
 setpref browser.startup.page 1
 setpref browser.toolbars.bookmarks.visibility never
 setpref browser.search.region "BR"
+setpref browser.autofocus false
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: set filetype=tridactyl

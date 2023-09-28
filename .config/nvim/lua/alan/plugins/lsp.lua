@@ -1,7 +1,22 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    { "folke/neodev.nvim",        config = true }, -- makes lua_ls recognize neovim lua api functions
+    {
+      "folke/neodev.nvim",
+      dependencies = { "windwp/nvim-projectconfig", optional = true },
+      config = function()
+        require("neodev").setup({
+          override = function(root_dir, library)
+            if root_dir:find(require("alan.dirs").projects_config, 1, true) then
+              library.enabled = true
+              library.plugins = true
+              library.runtime = true
+              library.types = true
+            end
+          end,
+        })
+      end
+    }, -- makes lua_ls recognize neovim lua api functions
     { "ray-x/lsp_signature.nvim", config = true },
     {
       "williamboman/mason-lspconfig.nvim",

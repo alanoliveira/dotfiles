@@ -1,0 +1,58 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+format = """
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+${custom.direnv}\
+$fill\
+${custom.tmux} \
+$line_break\
+$character\
+"""
+right_format = '$status'
+
+[directory]
+truncate_to_repo = false
+
+[git_branch]
+format = '[$symbol$branch(:$remote_branch)]($style) '
+
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
+ahead = '↑${count}'
+diverged = '⇡${ahead_count}⇣${behind_count}'
+behind = '↓${count}'
+modified = '!${count}'
+deleted = '󰮘 '
+stashed = '󰘓 '
+style = 'bold yellow'
+
+[status]
+disabled = false
+
+[fill]
+symbol = ' '
+
+[custom.tmux]
+command = 'tmux display-message -p "#{session_name}"'
+symbol = ''
+when = '[ -n "$TMUX" ]'
+format = '[$symbol ($output)]($style)'
+
+[custom.direnv]
+when = '[ -n "$DIRENV_DIR" ] && direnv status 2> /dev/null | grep -q "Found RC allowed false"'
+format = '[$symbol]($style)'
+symbol = '󰈡 '
+style = 'bold red'
+
+[custom.todo_sh]
+when = 'todo.sh ls | tail -n1 | grep -v "TODO: 0 "'
+format = '[$symbol]($style)'
+symbol = '󰄳 '
+style = 'bold '

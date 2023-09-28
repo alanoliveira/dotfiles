@@ -10,7 +10,7 @@ return {
       suggestion = {
         enabled = true,
         auto_trigger = true,
-        keymap = { accept = nil },
+        keymap = { accept = "<Tab>" },
       },
       filetypes = {
         yaml = true,
@@ -26,15 +26,6 @@ return {
         require("copilot.command").enable()
       else
         require("copilot.command").disable()
-      end
-    end)
-
-    vim.keymap.set({ "i" }, "<Tab>", function()
-      local autopairs = package.loaded["nvim-autopairs"];
-      if autopairs ~= nil then
-        autopairs.disable_and_do(require("copilot.suggestion").accept)
-      else
-        require("copilot.suggestion").accept()
       end
     end)
   end,

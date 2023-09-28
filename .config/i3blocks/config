@@ -1,0 +1,43 @@
+separator=true
+separator_block_width=30
+
+[git_hub]
+command=$HOME/.config/i3blocks/blocks/github
+interval=600
+
+[volume]
+command=$HOME/.config/i3blocks/blocks/volume
+min_width=󰕾 100%
+LABEL_OFF=󰖁 
+LABEL_LOW=󰕿 
+LABEL_MEDIUM=󰖀 
+LABEL_HIGH=󰕾 
+interval=20
+
+[bluetooth]
+command=$HOME/.config/i3blocks/blocks/bluetooth
+interval=5
+
+[cpu]
+command=$HOME/.config/i3blocks/blocks/cpu_usage
+label=  
+interval=5
+
+[disk]
+command=$HOME/.config/i3blocks/blocks/disk
+label=  
+interval=60
+
+[memory]
+command=$HOME/.config/i3blocks/blocks/memory
+label=󰍛  
+interval=5
+
+[battery]
+command=$HOME/.config/i3blocks/blocks/battery
+min_width=󰁹 100%
+interval=120
+
+[time]
+command=date '+%Y-%m-%d %H:%M:%S'
+interval=1

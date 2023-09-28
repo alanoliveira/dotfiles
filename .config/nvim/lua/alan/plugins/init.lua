@@ -7,6 +7,7 @@ return {
   { "kylechui/nvim-surround", config = true, module = "nvim-treesitter" },
   { "andymass/vim-matchup", init = function() vim.g.matchup_matchparen_offscreen = { method = "scrolloff" } end },
   { "folke/which-key.nvim", config = true },
+  { "NStefan002/speedtyper.nvim", config = true },
 
   -- language specifc stuffs
   { "slim-template/vim-slim", ft = "slim" },

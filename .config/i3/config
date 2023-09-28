@@ -19,22 +19,25 @@ font pango:Caskaydia Cove Nerd Font 12
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec alacritty
+workspace_auto_back_and_forth yes
+
+no_focus [window_role=".*"]
+focus_on_window_activation none
+for_window [floating] focus
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+x kill
 
 ################################################################################################
 
 # Start Applications
 bindsym $mod+space exec rofi -show
-bindsym $mod+e exec alacritty --option window.opacity=0.9 -t ranger -e ranger
+bindsym $mod+e exec tobuterm -o 0.9 -t ranger -e ranger
 bindsym $mod+Shift+e exec pcmanfm
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-bindsym $mod+Shift+p exec alacritty -t "process-manager" -e btm
+bindsym $mod+Shift+p exec tobuterm -o 0.9 -t "process-manager" -e btm
 
 focus_follows_mouse no
 
@@ -80,15 +83,15 @@ bindsym $mod+Shift+s sticky toggle
 # bindsym $mod+a focus parent
 
 # move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+Shift+v move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
+bindsym $mod+v scratchpad show
 
 #navigate workspaces next / previous
-bindsym $mod+Ctrl+Right workspace next
-bindsym $mod+Ctrl+Left workspace prev
+bindsym $mod+Ctrl+l workspace next
+bindsym $mod+Ctrl+h workspace prev
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
@@ -100,8 +103,17 @@ set $ws3 3
 set $ws4 4
 set $ws5 5
 set $ws6 6
-set $ws6 7
-set $ws7 " "
+set $wsMp "9 "
+set $wsWiki "0 "
+
+workspace $ws1 output primary
+workspace $ws2 output primary
+workspace $ws3 output primary
+workspace $ws4 output primary
+workspace $ws5 output primary
+workspace $wsMp output primary
+workspace $wsWiki output primary
+workspace $ws6 output nonprimary
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -110,8 +122,8 @@ bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-
+bindsym $mod+9 workspace $wsMp
+bindsym $mod+0 workspace $wsWiki
 
 # Move to workspace with focused container
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
@@ -120,17 +132,16 @@ bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 
 # Open applications on specific workspaces
-# assign [class="Spotify"] $ws7
+# assign [class="Spotify"] $wsMp
+for_window [class="Alacritty" title="Wiki"] move to workspace $wsWiki
 
 # Specific applications settings
+for_window [class="tobuterm"] floating enable, resize set 1500 1000, move position center
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="Blueman-manager"] floating enable border pixel 1
 for_window [title="tridactyl-nvim"] floating enable
-for_window [title="ranger" class="Alacritty"] floating enable, resize set 1500 1000, move absolute position center
-for_window [title="process-manager"] floating enable, resize set 1500 1000, move absolute position center
 
 for_window [title="FCEUX.*" class="fceux"] floating enable resize set 254 245
 for_window [title="PPU Tile Editor" class="fceux"] floating enable resize set 278 421
@@ -142,14 +153,14 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # Set shut down, restart and locking features
-bindsym $mod+0 mode "$mode_system"
+bindsym $mod+q mode "$mode_system"
 set $mode_system (l)ock, (e)xit, (s)uspend, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3lock, mode "default"
     bindsym s exec --no-startup-id suspend, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym r exec --no-startup-id reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id shutdown, mode "default"
+    bindsym Shift+s exec --no-startup-id shutdown now, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -178,47 +189,45 @@ mode "resize" {
 bindsym $mod+Ctrl+Shift+l exec --no-startup-id i3lock
 
 # Autostart applications
-exec --no-startup-id unclutter
-exec --no-startup-id blueman-applet
-exec --no-startup-id pa-applet
-exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec i3-msg workspace $ws1
 exec --no-startup-id spotify
-# wait a little before moving spotify to prevent workspace request urgency
-exec sleep 3; i3-msg '[class="Spotify"] move to workspace $ws7'
+exec --no-startup-id alacritty -t "Wiki" -e nvim -c "cd $CLOUD_DIR/wiki"
+exec --no-startup-id alacritty
+exec sleep 3; i3-msg '[class="Spotify"] move to workspace $wsMp'
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
 
-set $rosewater #dc8a78
-set $flamingo  #dd7878
-set $pink      #ea76cb
-set $mauve     #8839ef
-set $red       #d20f39
-set $maroon    #e64553
-set $peach     #fe640b
-set $green     #40a02b
-set $teal      #179299
-set $sky       #04a5e5
-set $sapphire  #209fb5
-set $blue      #1e66f5
-set $lavender  #7287fd
-set $text      #4c4f69
-set $subtext1  #5c5f77
-set $subtext0  #6c6f85
-set $overlay2  #7c7f93
-set $overlay1  #8c8fa1
-set $overlay0  #9ca0b0
-set $surface2  #acb0be
-set $surface1  #bcc0cc
-set $surface0  #ccd0da
-set $base      #eff1f5
-set $mantle    #e6e9ef
-set $crust     #dce0e8
+set $rosewater #f4dbd6
+set $flamingo  #f0c6c6
+set $pink      #f5bde6
+set $mauve     #c6a0f6
+set $red       #ed8796
+set $maroon    #ee99a0
+set $peach     #f5a97f
+set $green     #a6da95
+set $teal      #8bd5ca
+set $sky       #91d7e3
+set $sapphire  #7dc4e4
+set $blue      #8aadf4
+set $lavender  #b7bdf8
+set $text      #cad3f5
+set $subtext1  #b8c0e0
+set $subtext0  #a5adcb
+set $overlay2  #939ab7
+set $overlay1  #8087a2
+set $overlay0  #6e738d
+set $surface2  #5b6078
+set $surface1  #494d64
+set $surface0  #363a4f
+set $base      #24273a
+set $mantle    #1e2030
+set $crust     #181926
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
 	i3bar_command i3bar
-	status_command i3status
+	status_command i3blocks
 	position top
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
@@ -235,12 +244,12 @@ bar {
         statusline $text
         separator  $text
 
-#                          border    backgr text
-        focused_workspace  $lavender $crust $text
-        active_workspace   $overlay0 $green $text
-        inactive_workspace $overlay0 $base  $subtext0
-        binding_mode       $blue     $base  $text
-        urgent_workspace   $peach    $base  $peach
+#                          border    backgr    text
+        focused_workspace  $lavender $crust    $text
+        active_workspace   $overlay0 $base     $subtext0
+        inactive_workspace $overlay0 $base     $subtext0
+        binding_mode       $blue     $surface2 $text
+        urgent_workspace   $peach    $base     $peach
     }
 }
 
