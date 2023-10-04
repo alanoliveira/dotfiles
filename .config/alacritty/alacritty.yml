@@ -898,4 +898,4 @@ key_bindings:
   #highlight_damage: false
   
 import:
-  - ~/.config/alacritty/themes/nightfox/nightfox.yml
+  - ~/.config/alacritty/themes/catppuccin/catppuccin-latte.yml
