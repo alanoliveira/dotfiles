@@ -2,13 +2,14 @@
 # https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File.html
 set editing-mode vi
 set show-mode-in-prompt on
-$if ruby
-    # inside of ruby we can change the prompt mode
-    set vi-cmd-mode-string \1\e[2 q\2
-    set vi-ins-mode-string \1\e[6 q\2
-$else
-    set vi-cmd-mode-string \1\e[34m\2(n)\1\e[0m\2
-    set vi-ins-mode-string \1\e[32m\2(i)\1\e[0m\2
-$endif
-"\C-p": history-search-backward
-"\C-n": history-search-forward
+set vi-cmd-mode-string \1\e[34m\2(n)\1\e[0m\2
+set vi-ins-mode-string \1\e[32m\2(i)\1\e[0m\2
+
+# $if Ruby
+#   set keymap vi-insert
+#   # https://github.com/ruby/reline/blob/4ce247ce2b0965ef25b9d8c7f5c712e73d7e433e/lib/reline/line_editor.rb#L1143
+#   "\e[B": "\C-n" # arrow down to completion
+#   "\e[A": "\C-P" # arrow up to completion
+#   "\C-p": previous-history
+#   "\C-n": next-history
+# $endif
